@@ -25,5 +25,9 @@
           title = "Italik NixOS Flakes";
         };
       };
+
+      systems.modules.nixos = with inputs; [
+        impermanence.nixosModules.impermanence
+      ];
     };
 }
