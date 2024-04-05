@@ -225,7 +225,7 @@ in {
           track_quota = 1;
           delayed_quota_update = 0;
           pool_size = 0;
-          users_base_dir = "/mnt/homes/";
+          users_base_dir = "/data/homes/";
           actions = {
             execute_on = []; # List of str
             execute_for = []; # List of str
@@ -265,7 +265,7 @@ in {
             port = 0;
             proto = "http";
           };
-          backups_path = "/mnt/backups";
+          backups_path = "/data/backups";
         };
         httpd = {
           bindings = [
@@ -336,7 +336,7 @@ in {
               };
             }
           ];
-          templates_path = "templates";
+          templates_path = "/data/templates";
           static_files_path = "static";
           openapi_path = "";
           web_root = "";
