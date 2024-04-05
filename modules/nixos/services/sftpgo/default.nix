@@ -225,7 +225,7 @@ in {
           track_quota = 1;
           delayed_quota_update = 0;
           pool_size = 0;
-          users_base_dir = "/data/homes/";
+          users_base_dir = "/var/lib/sftpgo/homes/";
           actions = {
             execute_on = []; # List of str
             execute_for = []; # List of str
@@ -265,7 +265,7 @@ in {
             port = 0;
             proto = "http";
           };
-          backups_path = "/data/backups";
+          backups_path = "/var/lib/sftpgo/backups";
         };
         httpd = {
           bindings = [
@@ -336,7 +336,7 @@ in {
               };
             }
           ];
-          templates_path = "/data/templates";
+          templates_path = "/var/lib/sftpgo/templates";
           static_files_path = "static";
           openapi_path = "";
           web_root = "";
@@ -461,5 +461,29 @@ in {
 #    services.nginx = {
 #      
 #    };
+    # Setup folders (see https://github.com/nix-community/impermanence)
+    environment.persistence."/data" = {
+      directories = [
+        "/var/log"
+        {
+          directory = "/var/lib/sftpgo/templates";
+          user = "sftpgo";
+          group = "sftpgo";
+          mode = "0700";
+        }
+        {
+          directory = "/var/lib/sftpgo/backups";
+          user = "sftpgo";
+          group = "sftpgo";
+          mode = "0700";
+        }
+        {
+          directory = "/var/lib/sftpgo/homes";
+          user = "sftpgo";
+          group = "sftpgo";
+          mode = "0700";
+        }
+      ];
+    };
   };
 }
