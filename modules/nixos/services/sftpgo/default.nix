@@ -112,7 +112,7 @@ in {
             "sk-ecdsa-sha2-nistp256@openssh.com"
           ];
           trusted_user_ca_keys = [];
-          revoked_user_certs_file = [];
+          revoked_user_certs_file = "";
           login_banner_file = "";
           enabled_ssh_commands = "";
           keyboard_interactive_authentication = true;
