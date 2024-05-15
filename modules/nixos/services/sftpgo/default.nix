@@ -485,5 +485,8 @@ in {
         }
       ];
     };
+    systemd.tmpfiles.rules = [
+      "d /run/sftpgo 0755 sftpgo sftpgo"
+    ];
   };
 }
