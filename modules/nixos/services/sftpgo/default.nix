@@ -276,7 +276,7 @@ in {
               enable_web_admin = false;
               enable_web_client = true;
               enable_rest_api = false;
-              enabled_login_methods = 2;
+              enabled_login_methods = 12;
               # HTTPS provided by reverse proxy
               enable_https = false;
               #certificate_file = "";
