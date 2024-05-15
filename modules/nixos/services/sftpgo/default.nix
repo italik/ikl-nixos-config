@@ -458,10 +458,35 @@ in {
         ];
       };
     };
-#    services.nginx = {
-#      
-#    };
-    # Setup folders (see https://github.com/nix-community/impermanence)
+    services.nginx = {
+      enable = true;
+      group = "www-data";
+      user = "www-data";
+
+      recommendedGzipSettings = true;
+      recommendedOptimisation = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
+
+      clientMaxBodySize = "2G";
+
+      virtualHosts."sftp.italikintra.net" = {
+        enableACME = true;
+        forceSSL = true;
+
+        locations."/" = {
+          proxyPass = "http://unix:/run/sftpgo/httpd.sock";
+          extraConfig = ''
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_protocol on;
+          '';
+        };
+      };
+    };
+   # Setup folders (see https://github.com/nix-community/impermanence)
     environment.persistence."/data" = {
       directories = [
         "/var/log"
