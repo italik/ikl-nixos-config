@@ -462,8 +462,6 @@ in {
     security.acme.defaults.email = "alerts@italik.co.uk";
     services.nginx = {
       enable = true;
-      group = "www-data";
-      user = "www-data";
 
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
