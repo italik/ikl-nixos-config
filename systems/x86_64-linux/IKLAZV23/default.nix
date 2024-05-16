@@ -66,4 +66,7 @@ with lib.ikl; {
       ssh.enable = true;
     };
   };
+
+  # Override SSH port as SFTPGo uses port 22
+  services.openssh.ports = [ 7356 ];
 }
