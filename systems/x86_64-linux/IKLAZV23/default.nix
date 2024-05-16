@@ -68,5 +68,5 @@ with lib.ikl; {
   };
 
   # Override SSH port as SFTPGo uses port 22
-  services.openssh.ports = [ 7356 ];
+  services.openssh.ports = lib.mkForce [ 7356 ];
 }
