@@ -61,6 +61,9 @@ with lib.ikl; {
     services = {
       sftpgo.enable = true;
     };
-    system.users.enable = true;
+    system = {
+      users.enable = true;
+      ssh.enable = true;
+    };
   };
 }
