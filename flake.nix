@@ -10,6 +10,9 @@
     };
 
     impermanence.url = "github:nix-community/impermanence";
+
+    nixos-generators.url = "github:nix-community/nixos-generators";
+    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs:

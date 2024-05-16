@@ -52,6 +52,11 @@ with lib.ikl; {
     git
   ];
 
+  users.users.italik.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFGZchNdZjwvX4Ie0ICn/+C9S11m71J0aCxOoD6gBXni RDM--IKLAZV23"
+  ];
+
+
   ikl = {
     services = {
       sftpgo.enable = true;
