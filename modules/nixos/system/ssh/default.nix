@@ -26,7 +26,7 @@ in {
         PasswordAuthentication = false;
         AllowUsers = [ "italik" ];
         X11Forwarding = false;
-        PermitRootLogin = "yes";
+        PermitRootLogin = lib.mkForce "yes";
       };
     };
   };

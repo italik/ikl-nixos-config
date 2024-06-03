@@ -1,11 +1,14 @@
 { lib, pkgs, ... }:
 with lib;
 with lib.ikl; {
-  imports = [ ./hardware-configuration.nix ];
+  imports = with inputs; [
+    ./hardware-configuration.nix
+  ];
 
-  boot.loader.grub.enable = true;
-
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub = {
+    enable = true;
+    devices = lib.mkForce [ "/dev/sda" ];
+  };
 
   networking.hostName = "IKLAZV23";
 
@@ -34,7 +37,8 @@ with lib.ikl; {
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-label/swap"; }
+    [
+      { device = "/dev/disk/by-label/swap"; }
     ];
 
   i18n.defaultLocale = "en_GB.UTF-8";
