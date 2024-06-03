@@ -9,11 +9,9 @@ with lib.ikl; {
 
   networking.hostName = "IKLAZV23";
 
-  networking.networkmanager.enable = true;
-
   time.timeZone = "Europe/London";
 
-  fileSystems."/" =
+  fileSystems."/" = lib.mkForce
     { device = "none";
       fsType = "tmpfs";
       options = [ "defaults" "size=25%" "mode=755" ];
