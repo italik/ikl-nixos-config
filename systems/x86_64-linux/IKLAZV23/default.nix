@@ -64,6 +64,7 @@ with lib.ikl; {
       sftpgo.enable = true;
     };
     system = {
+      azure.enable = true;
       impermanence.enable = true;
       ssh.enable = true;
       users.enable = true;
