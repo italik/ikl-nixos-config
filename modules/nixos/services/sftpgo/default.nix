@@ -467,7 +467,6 @@ in {
 
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
-      recommendedProxySettings = true;
       recommendedTlsSettings = true;
 
       clientMaxBodySize = "2G";
