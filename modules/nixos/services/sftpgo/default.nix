@@ -500,6 +500,12 @@ in {
       directories = [
         "/var/log"
         {
+          directory = "/var/lib/sftpgo";
+          user = "sftpgo";
+          group = "sftpgo";
+          mode = "0700";
+        }
+        {
           directory = "/var/lib/sftpgo/templates";
           user = "sftpgo";
           group = "sftpgo";
