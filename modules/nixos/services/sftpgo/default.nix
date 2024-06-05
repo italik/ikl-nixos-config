@@ -514,6 +514,12 @@ in {
           group = "sftpgo";
           mode = "0700";
         }
+        {
+          directory = "/var/lib/sftpgo/static";
+          user = "sftpgo";
+          group = "sftpgo";
+          mode = "0700";
+        }
       ];
     };
     systemd.tmpfiles.rules = [
