@@ -39,7 +39,7 @@ in {
           rename_mode = 0;
           resume_max_size = 0;
           # temp_path = "/path/to/temp/";
-          proxy_protocol = 2;
+          proxy_protocol = 1;
           proxy_allowed = [ "127.0.0.1" ];
           proxy_skipped = [ ];
           startup_hook = "";
