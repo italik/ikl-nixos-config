@@ -274,7 +274,7 @@ in {
               #port = 8080;
               address = "/run/sftpgo/httpd.sock";
               #address = "0.0.0.0";
-              enable_web_admin = false;
+              enable_web_admin = true;
               enable_web_client = true;
               enable_rest_api = false;
               enabled_login_methods = 12;
