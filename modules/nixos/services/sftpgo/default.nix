@@ -72,7 +72,11 @@ in {
           ];
           max_auth_tries = 6;
           banner = "Italik SFTP ready";
-          host_keys = [];
+          host_keys = [
+            "/data/var/lib/sftpgo/id_ecdsa"
+            "/data/var/lib/sftpgo/id_ed25519"
+            "/data/var/lib/sftpgo/id_rsa"
+          ];
           host_certificates = [];
           host_key_algorithms = [
             "rsa-sha2-512"
@@ -208,7 +212,7 @@ in {
         };
         data_provider = {
           driver = "bolt";
-          name = "sftpgo-db";
+          name = "/data/var/lib/sftpgo/sftpgo-db";
           host = "";
           #port = 0;
           username = "";
