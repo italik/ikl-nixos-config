@@ -212,7 +212,7 @@ in {
         };
         data_provider = {
           driver = "bolt";
-          name = "/var/lib/sftpgo/sftpgo-db";
+          name = "/var/lib/sftpgo/sftpgo.db";
           host = "";
           #port = 0;
           username = "";
