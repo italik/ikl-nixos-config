@@ -499,6 +499,7 @@ in {
     environment.persistence."/data" = {
       directories = [
         "/var/log"
+        "/var/lib/acme"
         {
           directory = "/var/lib/sftpgo/templates";
           user = "sftpgo";
