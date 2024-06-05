@@ -338,7 +338,7 @@ in {
             }
           ];
           templates_path = "/var/lib/sftpgo/templates";
-          static_files_path = "static";
+          static_files_path = "/var/lib/sftpgo/static";
           openapi_path = "";
           web_root = "";
           certificate_file = "";
