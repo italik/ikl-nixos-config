@@ -473,9 +473,7 @@ in {
       upstreams.sftpgo = {
         servers = {
           "unix:/run/sftpgo/httpd.sock" = {
-            extraConfig = ''
-              proxy_protocol on;
-            '';
+              proxy_protocol = on;
           };
         };
       };
