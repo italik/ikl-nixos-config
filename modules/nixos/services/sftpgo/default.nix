@@ -485,6 +485,11 @@ in {
             proxy_set_header X-Forwarded-Proto $scheme;
           '';
         };
+
+        extraConfig = ''
+          error_log /var/log/nginx/error.log;
+          access_log /var/log/nginx/access.log;
+        '';
       };
     };
    # Setup folders (see https://github.com/nix-community/impermanence)
