@@ -23,6 +23,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    networking.firewall.allowedTCPPorts = [ 443 80 ];
     services.sftpgo = {
       enable = true;
       settings = {
@@ -470,20 +471,12 @@ in {
 
       clientMaxBodySize = "2G";
 
-      upstreams.sftpgo = {
-        servers = {
-          "unix:/run/sftpgo/httpd.sock" = {
-              proxy_protocol = on;
-          };
-        };
-      };
-
       virtualHosts."sftp.italikintra.net" = {
         enableACME = true;
         forceSSL = true;
 
         locations."/" = {
-          proxyPass = "http://$sftpgo";
+          proxyPass = "http://unix:/run/sftpgo/httpd.sock";
           extraConfig = ''
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
