@@ -461,6 +461,7 @@ in {
     };
     security.acme.acceptTerms = true;
     security.acme.defaults.email = "alerts@italik.co.uk";
+    users.users.nginx.extraGroups = [ "sftpgo" ];
     services.nginx = {
       enable = true;
 
