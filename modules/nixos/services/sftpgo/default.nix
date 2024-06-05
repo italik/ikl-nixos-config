@@ -73,9 +73,9 @@ in {
           max_auth_tries = 6;
           banner = "Italik SFTP ready";
           host_keys = [
-            "/data/var/lib/sftpgo/id_ecdsa"
-            "/data/var/lib/sftpgo/id_ed25519"
-            "/data/var/lib/sftpgo/id_rsa"
+            "/var/lib/sftpgo/id_ecdsa"
+            "/var/lib/sftpgo/id_ed25519"
+            "/var/lib/sftpgo/id_rsa"
           ];
           host_certificates = [];
           host_key_algorithms = [
@@ -212,7 +212,7 @@ in {
         };
         data_provider = {
           driver = "bolt";
-          name = "/data/var/lib/sftpgo/sftpgo-db";
+          name = "/var/lib/sftpgo/sftpgo-db";
           host = "";
           #port = 0;
           username = "";
@@ -500,12 +500,6 @@ in {
       directories = [
         "/var/log"
         {
-          directory = "/var/lib/sftpgo";
-          user = "sftpgo";
-          group = "sftpgo";
-          mode = "0700";
-        }
-        {
           directory = "/var/lib/sftpgo/templates";
           user = "sftpgo";
           group = "sftpgo";
@@ -529,6 +523,12 @@ in {
           group = "sftpgo";
           mode = "0700";
         }
+      ];
+      files = [
+        "/var/lib/sftpgo/sftpgo.db"
+        "/var/lib/sftpgo/id_ecdsa"
+        "/var/lib/sftpgo/id_ed25519"
+        "/var/lib/sftpgo/id_rsa"
       ];
     };
     systemd.tmpfiles.rules = [
