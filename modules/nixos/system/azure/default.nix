@@ -5,6 +5,8 @@ with lib.ikl; let
 in {
   options.ikl.system.azure = with types; {
     enable = mkBoolOpt false "Whether or not to enable Azure extensions.";
+    verboseLogging = mkBoolOpt false "Whether or not to enable verbose logging.";
+    mountResourceDisk = mkBoolOpt true "Whether the agent should format (ext4) and mount the resource disk to /mnt/resource.";
   };
 
   config = mkIf cfg.enable {
@@ -151,7 +153,7 @@ in {
         Provisioning.AllowResetSysUser=n
 
         # Format if unformatted. If 'n', resource disk will not be mounted.
-        ResourceDisk.Format=n
+        ResourceDisk.Format=${if cfg.mountResourceDisk then "y" else "n"}
 
         # File system on the resource disk
         # Typically ext3 or ext4. FreeBSD images should use 'ufs2' here.
