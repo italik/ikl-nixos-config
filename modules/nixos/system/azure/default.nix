@@ -151,7 +151,7 @@ in {
         Provisioning.AllowResetSysUser=n
 
         # Format if unformatted. If 'n', resource disk will not be mounted.
-        ResourceDisk.Format=${if cfg.mountResourceDisk then "y" else "n"}
+        ResourceDisk.Format=n
 
         # File system on the resource disk
         # Typically ext3 or ext4. FreeBSD images should use 'ufs2' here.
