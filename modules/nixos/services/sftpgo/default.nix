@@ -341,9 +341,9 @@ in {
               };
             }
           ];
-          templates_path = "/var/lib/sftpgo/templates";
-          static_files_path = "/var/lib/sftpgo/static";
-          openapi_path = "";
+          #templates_path = "/var/lib/sftpgo/templates";
+          #static_files_path = "/var/lib/sftpgo/static";
+          #openapi_path = "";
           web_root = "";
           certificate_file = "";
           certificate_key_file = "";
