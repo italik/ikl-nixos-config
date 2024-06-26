@@ -18,8 +18,8 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs:
-    inputs.snowfall-lib.mkFlake {
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
       inherit inputs;
       src = ./.;
 
@@ -31,10 +31,16 @@
           title = "Italik NixOS Flakes";
         };
       };
+    };
+   in
+     lib.mkFlake {
+       channels-config = {
+         allowUnfree = true;
+       };
 
-      systems.modules.nixos = with inputs; [
-        impermanence.nixosModules.impermanence
-        disko.nixosModules.disko
-      ];
+       systems.modules.nixos = with inputs; [
+         impermanence.nixosModules.impermanence
+         disko.nixosModules.disko
+       ];
     };
 }
