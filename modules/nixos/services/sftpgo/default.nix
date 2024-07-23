@@ -524,6 +524,12 @@ in {
           group = "sftpgo";
           mode = "0700";
         }
+        {
+          directory = "/var/lib/sftpgo/vfolders";
+          user = "sftpgo";
+          group = "sftpgo";
+          mode = "0700";
+        }
       ];
       files = [
         "/var/lib/sftpgo/sftpgo.db"
