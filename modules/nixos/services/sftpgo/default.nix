@@ -290,7 +290,7 @@ in {
               client_auth_type = 0;
               tls_cipher_suites = []; # Not configurable for TLS1.3
               tls_protocols = [ "http/1.1" "h2" ];
-              proxy_allowed = []; # List of str
+              proxy_allowed = [ "/run/sftpgo/httpd.sock" ]; # List of str
               client_ip_proxy_header = "X-Forwarded-For";
               client_ip_header_depth = 0;
               hide_login_url = 3;
