@@ -50,6 +50,18 @@ with lib.ikl; {
 
   sops.defaultSopsFile = ./secrets/IKLAZV23.yaml;
   sops.age.keyFile = "/data/secrets/age-keys.txt";
+  sops.secrets = {
+    snmpd-string = {
+      mode = "0440";
+      owner = "root";
+      group = "root";
+    };
+    snmpd-ip = {
+      mode = "0440";
+      owner = "root";
+      group = "root";
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     age
