@@ -48,7 +48,11 @@ with lib.ikl; {
     useXkbConfig = true;
   };
 
+  sops.defaultSopsFile = ./secrets/IKLAZV23.yaml;
+  sops.age.keyFile = "/data/secrets/age-keys.txt";
+
   environment.systemPackages = with pkgs; [
+    age
     vim
     wget
     git
