@@ -14,8 +14,7 @@
     nixos-generators.url = "github:nix-community/nixos-generators";
     nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
 
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = inputs: let
@@ -40,7 +39,7 @@
 
        systems.modules.nixos = with inputs; [
          impermanence.nixosModules.impermanence
-         disko.nixosModules.disko
+         sops-nix.nixosModules.sops
        ];
     };
 }
