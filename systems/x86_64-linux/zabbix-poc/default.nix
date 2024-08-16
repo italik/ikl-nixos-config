@@ -61,6 +61,9 @@ with lib.ikl; {
 
 
   ikl = {
+    services = {
+      postgresql.enable = true;
+    };
     system = {
       azure.enable = true;
       impermanence.enable = true;
