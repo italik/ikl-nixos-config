@@ -31,7 +31,7 @@ in {
     environment.persistence."/data" = {
       directories = [
         "/var/log"
-        "/var/lib/acme"
+        "/var/lib/postgresql"
       ];
     };
   };
