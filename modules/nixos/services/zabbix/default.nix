@@ -41,6 +41,12 @@ in {
       };
     };
 
+    services.zabbixAgent = {
+      enable = true;
+      openFirewall = true;
+      server = "127.0.0.1";
+    };
+
     services.postgresql.ensureDatabases = [ "zabbix" ];
     services.postgresql.ensureUsers = [
       {
