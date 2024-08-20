@@ -63,6 +63,7 @@ with lib.ikl; {
   ikl = {
     services = {
       postgresql.enable = true;
+      zabbix-server.enable = true;
     };
     system = {
       azure.enable = true;
