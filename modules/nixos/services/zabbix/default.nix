@@ -11,9 +11,14 @@ in {
     networking.firewall.allowedTCPPorts = [ 22 443 80 ];
     services.zabbixServer = {
       enable = true;
+      extraPackages = []; # List of pkgs
       database = {
         createLocally = false;
-        
+        host = ""; # Use Unix socket
+        name = "zabbix";
+        user = "zabbix";
+        socket = "/run/postgresql";
+        type = "pgsql";
       };
       listen = {
         ip = "";
@@ -22,15 +27,26 @@ in {
       openFirewall = true;
       settings = {};
     };
+
+    services.zabbixWeb = {
+      enable = true;
+      database = {
+        host = ""; # Use Unix socket
+        name = "zabbix";
+        user = "zabbix";
+        socket = "/run/postgresql";
+        type = "pgsql";
+      };
+      virtualHost = {
+        adminAddr = "support@italik.co.uk";
+        enableACME = true;
+        forceSSL = true;
+        hostName = "zabbix.italikintra.net";
+      };
+    };
+    
     security.acme.acceptTerms = true;
     security.acme.defaults.email = "alerts@italik.co.uk";
-    services.nginx = {
-      enable = true;
-
-      recommendedGzipSettings = true;
-      recommendedOptimisation = true;
-      recommendedTlsSettings = true;
-    };
     # Setup folders (see https://github.com/nix-community/impermanence)
     environment.persistence."/data" = {
       directories = [
