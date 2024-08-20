@@ -40,6 +40,14 @@ in {
         hostName = "zabbix.italikintra.net";
       };
     };
+
+    services.postgresql.ensureDatabases = [ "zabbix" ];
+    services.postgresql.ensureUsers = [
+      {
+        name = "zabbix";
+        ensureDBOwnership = true;
+      }
+    ];
     
     security.acme.acceptTerms = true;
     security.acme.defaults.email = "alerts@italik.co.uk";
