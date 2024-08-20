@@ -20,10 +20,6 @@ in {
         socket = "/run/postgresql";
         type = "pgsql";
       };
-      listen = {
-        ip = "";
-        port = "";
-      };
       openFirewall = true;
       settings = {};
     };
