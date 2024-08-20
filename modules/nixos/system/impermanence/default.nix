@@ -9,5 +9,10 @@ in {
 
   config = mkIf cfg.enable {
     environment.etc."machine-id".source = "/data/secrets/machine-id";
+    environment.persistence."/data" = {
+      directories = [
+        "/var/log"
+      ];
+    };
   };
 }

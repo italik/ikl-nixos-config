@@ -50,7 +50,6 @@ in {
     # Setup folders (see https://github.com/nix-community/impermanence)
     environment.persistence."/data" = {
       directories = [
-        "/var/log"
         "/var/lib/acme"
       ];
     };
