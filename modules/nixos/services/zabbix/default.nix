@@ -26,6 +26,9 @@ in {
 
     services.zabbixWeb = {
       enable = true;
+      extraConfig = ''
+      $SSO['IDP_CERT'] = "/data/secrets/zabbix_sso_idp.cert";
+      '';
       database = {
         host = ""; # Use Unix socket
         name = "zabbix";
