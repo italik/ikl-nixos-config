@@ -11,6 +11,7 @@ in {
     networking.firewall.allowedTCPPorts = [ 22 443 80 ];
     services.zabbixServer = {
       enable = true;
+      package = pkgs.zabbix64.server;
       extraPackages = []; # List of pkgs
       database = {
         createLocally = false;
@@ -26,6 +27,7 @@ in {
 
     services.zabbixWeb = {
       enable = true;
+      package = pkgs.zabbix64.web;
       extraConfig = ''
       $SSO['IDP_CERT'] = "/data/secrets/zabbix_sso_idp.cert";
       '';
@@ -46,6 +48,7 @@ in {
 
     services.zabbixAgent = {
       enable = true;
+      package = pkgs.zabbix64.agent2;
       openFirewall = true;
       server = "127.0.0.1";
     };
