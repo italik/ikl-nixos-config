@@ -11,6 +11,7 @@ in {
     environment.etc."machine-id".source = "/data/secrets/machine-id";
     environment.persistence."/data" = {
       directories = [
+        "/var/lib/nixos"
         "/var/log"
       ];
     };
