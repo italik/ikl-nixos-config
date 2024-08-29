@@ -80,6 +80,7 @@ with lib.ikl; {
       sftpgo.enable = true;
     };
     system = {
+      autoUpgrade.enable = true;
       azure.enable = true;
       impermanence.enable = true;
       ssh.enable = true;
