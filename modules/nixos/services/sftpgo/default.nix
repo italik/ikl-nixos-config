@@ -475,6 +475,26 @@ in {
 
       clientMaxBodySize = "2G";
 
+      virtualHosts."cerberus.italikintra.net" = {
+        enableACME = true;
+        forceSSL = true;
+
+        locations."/" = {
+          proxyPass = "http://unix:/run/sftpgo/httpd.sock";
+          extraConfig = ''
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+          '';
+        };
+
+        extraConfig = ''
+          error_log /var/log/nginx/error.log;
+          access_log /var/log/nginx/access.log;
+        '';
+      };
+
       virtualHosts."sftp.italikintra.net" = {
         enableACME = true;
         forceSSL = true;
