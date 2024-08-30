@@ -257,5 +257,10 @@ in {
         # How often (in seconds) to monitor for DHCP client restarts
         OS.MonitorDhcpClientRestartPeriod=30
     '';
+  environment.persistence."/data" = {
+    directories = [
+      "/var/lib/waagent"
+    ];
+  };
   };
 }
