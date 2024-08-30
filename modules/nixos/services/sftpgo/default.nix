@@ -79,6 +79,7 @@ in {
           ];
           host_certificates = [];
           host_key_algorithms = [
+            "ssh-rsa"
             "rsa-sha2-512"
             "rsa-sha2-256"
             "ecdsa-sha2-nistp256"
