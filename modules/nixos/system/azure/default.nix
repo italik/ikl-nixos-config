@@ -101,6 +101,13 @@ in {
 
         # waagent's Microsoft.CPlat.Core.RunCommandLinux needs lsof
         pkgs.lsof
+
+        # waagent's Microsoft.Azure.RecoveryServices.VMSnapshotLinux
+        pkgs.coreutils
+        pkgs.gawk
+        pkgs.gnupg
+        pkgs.openssl
+        pkgs.which
       ];
     };
 
