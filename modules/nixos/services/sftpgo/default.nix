@@ -129,7 +129,7 @@ in {
         ftpd = {
           bindings = [
             {
-              port = 0;
+              port = 21;
               address = "";
               apply_proxy_config = true;
               tls_mode = 0;
@@ -152,7 +152,7 @@ in {
           banner = "Italik FTP ready";
           banner_file = "";
           active_transfers_port_non_20 = true;
-          passive_port_range = { start = 50000; end = 50100; };
+          passive_port_range = { start = 11000; end = 13000; };
           disable_active_mode = false;
           enable_site = false;
           hash_support = 0;
