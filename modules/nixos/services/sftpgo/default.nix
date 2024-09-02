@@ -23,7 +23,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [ 22 443 80 ];
+    networking.firewall.allowedTCPPorts = [ 21 22 443 80 ] ++
+                                          builtins.genList (x: 11000 + x) 2001;
     services.sftpgo = {
       enable = true;
       settings = {
