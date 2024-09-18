@@ -95,6 +95,7 @@ in {
             "ecdh-sha2-nistp521"
             "diffie-hellman-group14-sha256"
             "diffie-hellman-group-exchange-sha256"
+            "diffie-hellman-group-exchange-sha1"
           ];
           ciphers = [
             "aes128-gcm@openssh.com"
