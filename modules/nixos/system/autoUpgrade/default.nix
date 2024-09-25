@@ -14,6 +14,7 @@ in {
       flags = [
         "--update-input"
         "nixpkgs"
+        "--no-write-lock-file"
         "-L" # Print build logs
       ];
       dates = "04:00";
