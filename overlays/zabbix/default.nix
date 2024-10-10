@@ -2,4 +2,4 @@
 
 final: prev:
 
-{ inherit (channels.unstable) zabbix64; }
+{ inherit (channels.unstable) zabbix70; }
