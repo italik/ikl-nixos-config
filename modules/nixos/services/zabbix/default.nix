@@ -22,7 +22,11 @@ in {
         type = "pgsql";
       };
       openFirewall = true;
-      settings = {};
+      settings = {
+        LogFile = "/var/log/zabbix_server.log";
+        LogFileSize = 16;
+        LogType = "file";
+      };
     };
 
     services.zabbixWeb = {
