@@ -23,9 +23,9 @@ in {
       };
       openFirewall = true;
       settings = {
-        LogFile = "/var/log/zabbix_server.log";
-        LogFileSize = 16;
-        LogType = "file";
+        LogFile = lib.mkForce "/var/log/zabbix_server.log";
+        LogFileSize = lib.mkForce 16;
+        LogType = lib.mkForce "file";
       };
     };
 
