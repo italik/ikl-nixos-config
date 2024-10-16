@@ -21,6 +21,10 @@ with lib.ikl; {
       options = [ "defaults" "size=45%" "mode=755" ];
     };
 
+  fileSystems."/data" = {
+    neededForBoot = true;
+  };
+
 #  fileSystems."/nix" =
 #    { device = "/dev/disk/by-label/nix";
 #      fsType = "ext4";
@@ -31,11 +35,6 @@ with lib.ikl; {
 #      fsType = "vfat";
 #    };
 #
-#  fileSystems."/data" =
-#    { device = "/dev/disk/by-label/data";
-#      neededForBoot = true;
-#      fsType = "ext4";
-#    };
 
   swapDevices =
     [
