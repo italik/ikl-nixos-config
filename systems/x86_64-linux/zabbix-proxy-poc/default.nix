@@ -3,7 +3,6 @@ with lib;
 with lib.ikl; {
   imports = with inputs; [
     ./hardware-configuration.nix
-    ./disko.nix
   ];
 
   boot.loader.grub = {
@@ -15,26 +14,28 @@ with lib.ikl; {
 
   time.timeZone = "Europe/London";
 
-  fileSystems."/" = lib.mkForce
-    { device = "none";
-      fsType = "tmpfs";
-      options = [ "defaults" "size=45%" "mode=755" ];
-    };
+  fileSystems."/" = lib.mkForce {
+    device = "none";
+    fsType = "tmpfs";
+    options = [ "defaults" "size=45%" "mode=755" ];
+  };
 
   fileSystems."/data" = {
+    device = "/dev/disk/by-label/data";
+    fsType = "ext4";
     neededForBoot = true;
   };
 
-#  fileSystems."/nix" =
-#    { device = "/dev/disk/by-label/nix";
-#      fsType = "ext4";
-#    };
-#
-#  fileSystems."/boot" =
-#    { device = "/dev/disk/by-label/BOOT";
-#      fsType = "vfat";
-#    };
-#
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-label/nix";
+    fsType = "ext4";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/BOOT";
+    fsType = "vfat";
+  };
+
 
   swapDevices =
     [
