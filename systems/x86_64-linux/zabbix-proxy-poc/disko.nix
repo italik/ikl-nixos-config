@@ -15,6 +15,8 @@ with lib.ikl; {
               priority = 1;
             };
             boot = {
+              label = "BOOT";
+              name = "BOOT";
               size = "1G";
               priority = 2;
               content = {
@@ -24,6 +26,8 @@ with lib.ikl; {
               };
             };
             nix = {
+              label = "nix";
+              name = "nix";
               size = "50%";
               priority = 3;
               content = {
@@ -33,6 +37,8 @@ with lib.ikl; {
               };
             };
             data = {
+              label = "data";
+              name = "data";
               size = "100%";
               priority = 4;
               content = {

@@ -21,21 +21,21 @@ with lib.ikl; {
       options = [ "defaults" "size=45%" "mode=755" ];
     };
 
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-label/nix";
-      fsType = "ext4";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-label/BOOT";
-      fsType = "vfat";
-    };
-
-  fileSystems."/data" =
-    { device = "/dev/disk/by-label/data";
-      neededForBoot = true;
-      fsType = "ext4";
-    };
+#  fileSystems."/nix" =
+#    { device = "/dev/disk/by-label/nix";
+#      fsType = "ext4";
+#    };
+#
+#  fileSystems."/boot" =
+#    { device = "/dev/disk/by-label/BOOT";
+#      fsType = "vfat";
+#    };
+#
+#  fileSystems."/data" =
+#    { device = "/dev/disk/by-label/data";
+#      neededForBoot = true;
+#      fsType = "ext4";
+#    };
 
   swapDevices =
     [
