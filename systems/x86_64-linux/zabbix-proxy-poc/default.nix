@@ -3,6 +3,7 @@ with lib;
 with lib.ikl; {
   imports = with inputs; [
     ./hardware-configuration.nix
+    ./disko.nix
   ];
 
   boot.loader.grub = {
