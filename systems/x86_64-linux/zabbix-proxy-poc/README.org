@@ -1,0 +1,86 @@
+* Zabbix Proxy POC
+This is a proof of concept for deploying the Zabbix Proxy using NixOS.
+
+#+begin_quote
+Ensure that port 10051 outbound to the *Zabbix Server* is allowed through the local firewall
+Ensure that port 10051 inbound to the Zabbix Server *from the VM location* is allowed through the Azure NSG
+#+end_quote
+
+** On-Prem Installation Instructions
+Follow these instructions to install the proxy onto a local hypervisor
+
+1. Download the NixOS minimal image onto the hypervisor: https://channels.nixos.org/nixos-24.05/latest-nixos-minimal-x86_64-linux.iso
+2. Create a new virtual machine with at least 2vCPUs, 8GB of RAM and 32GB of storage and EFI disabled (Gen 1 in Hyper-V)
+3. Boot the virtual machine with the ISO mounted
+#+begin_quote
+Note: The default keyboard layout is the ANSI US layout. When using the UK layout:
+# is Shift+3
+#+end_quote
+4. Once booted, run the following command to get a root shell:
+   #+begin_src bash
+     sudo -i
+   #+end_src
+5. Start by partitioning the disk. Run the following commands in order to set up the disk partitioning. Press enter at the end of each line or when prompted.
+   *These commands will wipe all data on the virtual machine. Do not run this on an existing machine.*
+   If you receive messages about signatures already existing, _check you're running this on the correct machine as preexisting data has been detected_
+      #+begin_src bash
+        fdisk /dev/sda
+        o
+        n
+        <Enter>
+        <Enter>
+        <Enter>
+        +1G
+        n
+        <Enter>
+        <Enter>
+        <Enter>
+        +4G
+        t
+        2
+        swap
+        n
+        <Enter>
+        <Enter>
+        <Enter>
+        +16G
+        n
+        p
+        <Enter>
+        <Enter>
+        w
+   #+end_src
+   [[./partitioning.png]]
+6. Next, lets format these new partitions to the correct file systems and label them at the same time:
+   #+begin_src bash
+     mkfs.vfat -n BOOT /dev/sda1
+     mkswap -L swap /dev/sda2
+     mkfs.ext4 -L nix /dev/sda3
+     mkfs.ext4 -L data /dev/sda4
+   #+end_src
+[[./formatting.png]]
+7. Next, mount the newly created file systems into their correct places:
+   #+begin_src bash
+     swapon /dev/disk/by-label/swap
+     mount -t tmpfs none /mnt -o size=75%
+     mount -m /dev/disk/by-label/BOOT /mnt/boot
+     mount -m /dev/disk/by-label/nix /mnt/nix
+     mount -m /dev/disk/by-label/data /mnt/data
+   #+end_src
+   [[./mounting.png]]
+8. Almost there! Create the definitions for the italik and root user accounts:
+   #+begin_src bash
+     mkdir /mnt/data/secrets
+     mkpasswd > /mnt/data/secrets/root
+     mkpasswd > /mnt/data/secrets/italik
+     chmod 400 /mnt/data/secrets/root /mnt/data/secrets/italik
+   #+end_src
+9. Finally, run the installation:
+   #+begin_src bash
+     nixos-install --no-root-password --flake github:italik/ikl-nixos-config#zabbix-proxy-poc
+   #+end_src
+10. Once the installation has completed, reboot the machine. Make sure you remove the ISO once the system has shut down
+    #+begin_src bash
+      reboot
+    #+end_src
+[[./installed.png]]
