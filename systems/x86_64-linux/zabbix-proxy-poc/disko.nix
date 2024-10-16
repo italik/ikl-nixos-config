@@ -28,7 +28,7 @@ with lib.ikl; {
             nix = {
               label = "nix";
               name = "nix";
-              size = "50%";
+              size = "16G";
               priority = 3;
               content = {
                 type = "filesystem";
