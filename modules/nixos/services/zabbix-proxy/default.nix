@@ -20,6 +20,7 @@ in {
         user = "zabbix";
         socket = "/run/postgresql";
         type = "pgsql";
+        port = 5432;
       };
       openFirewall = true;
       server = "zabbix.italikintra.net";
