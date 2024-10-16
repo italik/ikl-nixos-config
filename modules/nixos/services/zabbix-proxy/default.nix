@@ -14,7 +14,7 @@ in {
       package = pkgs.zabbix70.proxy-pgsql;
       extraPackages = []; # List of pkgs
       database = {
-        createLocally = false;
+        createLocally = true;
         host = ""; # Use Unix socket
         name = "zabbix";
         user = "zabbix";
