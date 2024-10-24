@@ -137,8 +137,8 @@ in {
               apply_proxy_config = true;
               tls_mode = 0;
               tls_session_reuse = 0;
-              certificate_file = "";
-              certificate_ke_file = "";
+              certificate_file = ${config.services.nginx.virtualHosts."sftp.italikintra.net".sslCertificate};
+              certificate_key_file = ${config.services.nginx.virtualHosts."sftp.italikintra.net".sslCertificateKey};
               min_tls_version = 12;
               force_passive_ip = cfg.passiveIP;
               passive_ip_overrides = [
