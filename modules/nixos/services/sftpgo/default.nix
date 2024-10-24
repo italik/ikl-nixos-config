@@ -20,6 +20,7 @@ with lib.ikl; let
 in {
   options.ikl.services.sftpgo = with types; {
     enable = mkBoolOpt false "Whether or not to enable SFTPGo.";
+    passiveIP = mkOpt string "" "Passive IP to send to clients (usually External IP)";
   };
 
   config = mkIf cfg.enable {
@@ -139,7 +140,7 @@ in {
               certificate_file = "";
               certificate_ke_file = "";
               min_tls_version = 12;
-              force_passive_ip = "";
+              force_passive_ip = cfg.passiveIP;
               passive_ip_overrides = [
                 # { networks = [ "" ]; ip = ""; }
               ];
