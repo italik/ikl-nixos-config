@@ -78,7 +78,10 @@ with lib.ikl; {
 
   ikl = {
     services = {
-      sftpgo.enable = true;
+      sftpgo = {
+        enable = true;
+        passiveIP = "40.112.78.251";
+      };
     };
     system = {
       autoUpgrade.enable = true;
