@@ -137,8 +137,8 @@ in {
               apply_proxy_config = true;
               tls_mode = 0;
               tls_session_reuse = 0;
-              certificate_file = config.services.nginx.virtualHosts."sftp.italikintra.net".sslCertificate;
-              certificate_key_file = config.services.nginx.virtualHosts."sftp.italikintra.net".sslCertificateKey;
+              certificate_file = "/var/lib/acme/sftp.italikintra.net/fullchain.pem";
+              certificate_key_file = "/var/lib/acme/sftp.italikintra.net/privkey.pem";
               min_tls_version = 12;
               force_passive_ip = cfg.passiveIP;
               passive_ip_overrides = [
@@ -469,6 +469,7 @@ in {
     };
     security.acme.acceptTerms = true;
     security.acme.defaults.email = "alerts@italik.co.uk";
+    users.users.sftpgo.extraGroups = [ "nginx" ];
     users.users.nginx.extraGroups = [ "sftpgo" ];
     services.nginx = {
       enable = true;
