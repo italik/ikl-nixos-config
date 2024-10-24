@@ -138,7 +138,7 @@ in {
               tls_mode = 0;
               tls_session_reuse = 0;
               certificate_file = "/var/lib/acme/sftp.italikintra.net/fullchain.pem";
-              certificate_key_file = "/var/lib/acme/sftp.italikintra.net/privkey.pem";
+              certificate_key_file = "/var/lib/acme/sftp.italikintra.net/key.pem";
               min_tls_version = 12;
               force_passive_ip = cfg.passiveIP;
               passive_ip_overrides = [
