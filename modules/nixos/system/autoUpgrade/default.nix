@@ -21,4 +21,13 @@ in {
       randomizedDelaySec = "45min";
     };
   };
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    randomizedDelaySec = "1h";
+    options = "--delete-older-than 14d";
+  };
+  nix.optimise = {
+    automatic = true;
+  };
 }
