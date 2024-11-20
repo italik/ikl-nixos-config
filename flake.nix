@@ -41,7 +41,6 @@
        systems.modules.nixos = with inputs; [
          impermanence.nixosModules.impermanence
          sops-nix.nixosModules.sops
-         disko.nixosModules.disko
        ];
     };
 }
