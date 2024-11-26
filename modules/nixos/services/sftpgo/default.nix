@@ -21,6 +21,8 @@ in {
   options.ikl.services.sftpgo = with types; {
     enable = mkBoolOpt false "Whether or not to enable SFTPGo.";
     passiveIP = mkOpt str "" "Passive IP to send to clients (usually External IP)";
+    vhost = mkOpt str "" "Primary FQDN";
+    vhost_aliases = mkOpt (listOf str) [] "List of FQDN aliases for ACME";
   };
 
   config = mkIf cfg.enable {
@@ -480,11 +482,11 @@ in {
 
       clientMaxBodySize = "2G";
 
-      virtualHosts."sftp.italikintra.net" = {
+      virtualHosts."${cfg.vhost}" = {
         enableACME = true;
         forceSSL = true;
 
-        serverAliases = [ "cerberus.italikintra.net" ];
+        serverAliases = cfg.vhost_aliases;
 
         locations."/" = {
           proxyPass = "http://unix:/run/sftpgo/httpd.sock";

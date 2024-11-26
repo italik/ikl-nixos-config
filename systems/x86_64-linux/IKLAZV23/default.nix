@@ -81,6 +81,8 @@ with lib.ikl; {
       sftpgo = {
         enable = true;
         passiveIP = "40.112.78.251";
+        vhost = "sftp.italikintra.net";
+        vhost_aliases = [ "cerberus.italikintra.net" ];
       };
     };
     system = {
