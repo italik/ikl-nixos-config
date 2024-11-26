@@ -1,13 +1,11 @@
 #+title:IKLAZV23 - SFTPGo Documentation
 
-* IKLAZV23 - SFTPGo
-
 This document briefly describes important information about this server.
 
-** Disk Configuration
+* Disk Configuration
 Two disks are attached to the virtual machine. A 32GB image and a 1024GB image:
 
-*** SDA (32GB)
+** SDA (32GB)
 This disk contains 3 partitions:
 
 | Number | Label | Size | Filesystem | Mount |
@@ -17,7 +15,7 @@ This disk contains 3 partitions:
 |      3 | nix   | 26G  | ext4       | /nix  |
 
 
-*** SDC (1024GB)
+** SDC (1024GB)
 This disk contains 1 partition:
 
 | Number | Label | Size  | Filesystem | Mount |
