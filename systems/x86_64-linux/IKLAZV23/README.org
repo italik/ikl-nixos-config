@@ -21,3 +21,19 @@ This disk contains 1 partition:
 | Number | Label | Size  | Filesystem | Mount |
 |--------+-------+-------+------------+-------|
 |      1 | data  | 1024G | ext4       | /data |
+
+* Initial Data Partition Setup
+A few files need to be created in /data before the system can be used. Assuming the data partition is mounted at /mnt/data use the following commands (Comments are defined with a # and don't need to be entered):
+#+begin_src bash
+mkdir /mnt/data/secrets
+# SSH Host Keys. Do not enter a password
+ssh-keygen -t rsa -f /mnt/data/secrets/ssh_host_rsa_key
+ssh-keygen -t ed25519 -f /mnt/data/secrets/ssh_host_ed25519_key
+# User passwords. Use a secure password and save in password manager
+mkpasswd > /mnt/data/secrets/root
+mkpasswd > /mnt/data/secrets/italik
+chmod 400 /mnt/data/secrets/root /mnt/data/secrets/italik
+# AGE keys for secrets
+nix-shell -p age --run "age-keygen -o /mnt/data/secrets/age-keys.txt"
+# Save the public key shown on the screen to .sops.nix at this repo's root
+#+end_src
