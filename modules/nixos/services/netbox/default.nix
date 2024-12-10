@@ -12,9 +12,21 @@ in {
 
     services.netbox = {
       enable = true;
-      listenAddress = "0.0.0.0";
+      listenAddress = "[::1]";
       secretKeyFile = "/data/secrets/netboxSecret";
     };
+
+    services.nginx.virtualHosts."netbox.italikintra.net" = {
+      enableACME = true;
+      forceSSL = true;
+      kTLS = true;
+      locations."/" = {
+        proxyPass = "http://[::1]:8001";
+        proxyWebsockets = true;
+      };
+      locations."/static/".root = "/var/lib/netbox";
+    };
+    users.users.nginx.extraGroups = [ "netbox" ];
     
     security.acme.acceptTerms = true;
     security.acme.defaults.email = "alerts@italik.co.uk";
