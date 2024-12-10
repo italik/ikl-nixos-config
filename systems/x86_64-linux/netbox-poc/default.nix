@@ -10,7 +10,7 @@ with lib.ikl; {
     devices = lib.mkForce [ "/dev/sda" ];
   };
 
-  networking.hostName = "zabbix-poc";
+  networking.hostName = "netbox-poc";
 
   time.timeZone = "Europe/London";
 
