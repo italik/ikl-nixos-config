@@ -1,10 +1,10 @@
 { options, config, lib, pkgs, ... }:
 with lib;
 with lib.ikl; let
-  cfg = config.ikl.services.zabbix-server;
+  cfg = config.ikl.services.netbox;
 in {
-  options.ikl.services.zabbix-server = with types; {
-    enable = mkBoolOpt false "Whether or not to enable Zabbix Server.";
+  options.ikl.services.netbox = with types; {
+    enable = mkBoolOpt false "Whether or not to enable Netbox.";
   };
 
   config = mkIf cfg.enable {
