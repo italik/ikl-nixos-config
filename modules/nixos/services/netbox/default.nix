@@ -16,15 +16,23 @@ in {
       secretKeyFile = "/data/secrets/netboxSecret";
     };
 
-    services.nginx.virtualHosts."netbox.italikintra.net" = {
-      enableACME = true;
-      forceSSL = true;
-      kTLS = true;
-      locations."/" = {
-        proxyPass = "http://[::1]:8001";
-        proxyWebsockets = true;
+    services.nginx = {
+      enable = true;
+
+      recommendedGzipSettings = true;
+      recommendedOptimisation = true;
+      recommendedTlsSettings = true;
+
+      virtualHosts."netbox.italikintra.net" = {
+        enableACME = true;
+        forceSSL = true;
+        kTLS = true;
+        locations."/" = {
+          proxyPass = "http://[::1]:8001";
+          proxyWebsockets = true;
+        };
+        locations."/static/".root = "/var/lib/netbox";
       };
-      locations."/static/".root = "/var/lib/netbox";
     };
     users.users.nginx = {
       group = "netbox";
