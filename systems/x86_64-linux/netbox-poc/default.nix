@@ -62,6 +62,7 @@ with lib.ikl; {
 
   ikl = {
     services = {
+      netbox.enable = true;
     };
     system = {
       autoUpgrade.enable = true;
