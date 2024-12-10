@@ -26,7 +26,10 @@ in {
       };
       locations."/static/".root = "/var/lib/netbox";
     };
-    users.users.nginx.extraGroups = [ "netbox" ];
+    users.users.nginx = {
+      group = [ "netbox" ];
+      isSystemUser = true;
+    };
     
     security.acme.acceptTerms = true;
     security.acme.defaults.email = "alerts@italik.co.uk";
