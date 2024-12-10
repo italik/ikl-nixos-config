@@ -8,7 +8,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [ 22 443 80 ];
+    networking.firewall.allowedTCPPorts = [ 22 443 80 8001 ];
 
     services.netbox = {
       enable = true;
