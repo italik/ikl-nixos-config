@@ -13,6 +13,7 @@ in {
     services.netbox = {
       enable = true;
       listenAddress = "0.0.0.0";
+      secretKeyFile = "/data/secrets/netboxSecret";
     };
     
     security.acme.acceptTerms = true;
