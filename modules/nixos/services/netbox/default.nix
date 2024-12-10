@@ -27,7 +27,7 @@ in {
       locations."/static/".root = "/var/lib/netbox";
     };
     users.users.nginx = {
-      group = [ "netbox" ];
+      group = "netbox";
       isSystemUser = true;
     };
     
