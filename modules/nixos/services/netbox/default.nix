@@ -8,12 +8,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [ 22 443 80 8001 ];
+    networking.firewall.allowedTCPPorts = [ 22 443 80 ];
 
     services.netbox = {
       enable = true;
       listenAddress = "[::1]";
       secretKeyFile = "/data/secrets/netboxSecret";
+      services.netbox.settings.ALLOWED_HOSTS = [ "netbox.italikintra.net" "[::1]" ];
     };
 
     services.nginx = {
