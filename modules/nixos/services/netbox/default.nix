@@ -44,6 +44,7 @@ in {
       directories = [
         "/var/lib/acme"
         "/var/lib/netbox"
+        "/var/lib/postgresql"
       ];
     };
   };
