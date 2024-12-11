@@ -14,7 +14,7 @@ in {
       enable = true;
       listenAddress = "[::1]";
       secretKeyFile = "/data/secrets/netboxSecret";
-      services.netbox.settings.ALLOWED_HOSTS = [ "netbox.italikintra.net" "[::1]" ];
+      settings.ALLOWED_HOSTS = [ "netbox.italikintra.net" "[::1]" ];
     };
 
     services.nginx = {
