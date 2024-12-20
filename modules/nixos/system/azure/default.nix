@@ -2,6 +2,9 @@
 with lib;
 with lib.ikl; let
   cfg = config.ikl.system.azure;
+  waagent = (pkgs.waagent.override {
+    python3 = pkgs.python39;
+  });
 in {
   options.ikl.system.azure = with types; {
     enable = mkBoolOpt false "Whether or not to enable Azure extensions.";
@@ -13,10 +16,10 @@ in {
     boot.initrd.kernelModules = [ "ata_piix" ];
     networking.firewall.allowedUDPPorts = [ 68 ];
 
-    services.udev.packages = [ pkgs.waagent ];
+    services.udev.packages = [ waagent ];
 
     # Provide waagent-shipped udev rules in initrd too.
-    boot.initrd.services.udev.packages = [ pkgs.waagent ];
+    boot.initrd.services.udev.packages = [ waagent ];
     # udev rules shell out to chmod, cut and readlink, which are all
     # provided by pkgs.coreutils, which is in services.udev.path, but not
     # boot.initrd.services.udev.binPackages.
@@ -67,7 +70,7 @@ in {
       description = "Windows Azure Agent Service";
       unitConfig.ConditionPathExists = "/etc/waagent.conf";
       serviceConfig = {
-        ExecStart = "${pkgs.waagent}/bin/waagent -daemon";
+        ExecStart = "${waagent}/bin/waagent -daemon";
         Type = "simple";
       };
 
@@ -287,7 +290,7 @@ in {
         ln -sf ${pkgs.openssl}/bin/openssl /usr/bin/openssl
         ln -sf /run/wrappers/bin/mount /bin/mount
         mkdir -p /usr/sbin
-        ln -sf ${pkgs.waagent}/bin/waagent /usr/sbin/waagent
+        ln -sf ${waagent}/bin/waagent /usr/sbin/waagent
       '';
     };
   };
