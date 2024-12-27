@@ -56,7 +56,7 @@ with lib.ikl; {
   ];
 
   users.users.italik.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPqNRYfkIluJA0bQ8P1N0QPDCtxHykjMVFusaikPLWy1 IKL6DRKN13-L--zabbix-poc"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBsLgcBUEXCh7HVci+khRvtvVNpsPo7lfw8rDzo5zU4l"
   ];
 
 
