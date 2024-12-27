@@ -43,7 +43,7 @@ in {
         socket = "/run/postgresql";
         type = "pgsql";
       };
-      virtualHost = {
+      httpd.virtualHost = {
         adminAddr = "support@italik.co.uk";
         enableACME = true;
         forceSSL = true;
