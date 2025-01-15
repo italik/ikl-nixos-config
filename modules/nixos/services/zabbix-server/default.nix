@@ -71,6 +71,18 @@ in {
     # Setup folders (see https://github.com/nix-community/impermanence)
     environment.persistence."/data" = {
       directories = [
+        {
+          directory = "/var/lib/zabbix";
+          user = "zabbix";
+          group = "zabbix";
+          mode = "0700";
+        }
+        {
+          directory = "/var/log/zabbix";
+          user = "zabbix";
+          group = "zabbix";
+          mode = "0700";
+        }
         "/var/lib/acme"
       ];
     };
