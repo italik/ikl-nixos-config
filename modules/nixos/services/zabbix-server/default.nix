@@ -65,6 +65,9 @@ in {
         ensureDBOwnership = true;
       }
     ];
+    services.postgresql.authentication = ''
+      local zabbix  zabbix  peer
+    '';
     
     security.acme.acceptTerms = true;
     security.acme.defaults.email = "alerts@italik.co.uk";
