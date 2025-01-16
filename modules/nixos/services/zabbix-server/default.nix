@@ -35,6 +35,7 @@ in {
       package = pkgs.zabbix70.web;
       extraConfig = ''
       $SSO['IDP_CERT'] = "/data/secrets/zabbix_sso_idp.cert";
+      $SSO['SETTINGS'] = ['security' => ['requestedAuthnContext' => false]];
       '';
       database = {
         host = ""; # Use Unix socket
