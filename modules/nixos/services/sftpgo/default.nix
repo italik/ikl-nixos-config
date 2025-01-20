@@ -482,6 +482,17 @@ in {
 
       clientMaxBodySize = "2G";
 
+      virtualHosts."localhost" = {
+        locations."/basic_status" = {
+          extraConfig = ''
+            stub_status;
+            allow 127.0.0.1;
+            allow ::1;
+            deny all;
+          '';
+        };
+      };
+
       virtualHosts."${cfg.vhost}" = {
         enableACME = true;
         forceSSL = true;
