@@ -62,6 +62,11 @@ with lib.ikl; {
       owner = "root";
       group = "root";
     };
+    zabbix-psk = {
+      mode = "0440";
+      owner = "zabbix-agent";
+      group = "zabbix-agent";
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -87,6 +92,11 @@ with lib.ikl; {
       zabbix-agent = {
         enable = true;
         server = "13.79.72.159";
+        psk = {
+          enable = true;
+          identity = "IKLAZV23";
+          file = "/run/secrets/zabbix-psk";
+        };
       };
     };
     system = {

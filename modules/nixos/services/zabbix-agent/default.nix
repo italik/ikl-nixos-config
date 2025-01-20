@@ -7,6 +7,9 @@ in {
     enable = mkBoolOpt false "Whether or not to enable Zabbix Agent.";
     server = mkOpt str "zabbix.italikintra.net" "Zabbix Server or Proxy to connect to for Passive checks.";
     serverActive = mkOpt str cfg.server "Zabbix Server or Proxy to connect to for Active checks";
+    psk.enable = mkBoolOpt false "Whether or not to enable Zabbix Agent communication encryption with PSK";
+    psk.identity = mkOpt str "" "Zabbix PSK Identity";
+    psk.file = mkOpt str "" "Zabbix PSK File location";
   };
 
   config = mkIf cfg.enable {
@@ -17,6 +20,10 @@ in {
       server = cfg.server;
       settings = {
         ServerActive = cfg.serverActive;
+        TLSAccept = if cfg.psk.enable then "psk" else null;
+        TLSConnect = if cfg.psk.enable then "psk" else null;
+        TLSPSKIdentity = cfg.psk.identity;
+        TLSPSKFile = cfg.psk.file;
       };
     };
   };
