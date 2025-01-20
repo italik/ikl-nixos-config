@@ -84,6 +84,10 @@ with lib.ikl; {
         vhost = "sftp.italikintra.net";
         vhost_aliases = [ "cerberus.italikintra.net" ];
       };
+      zabbix-agent = {
+        enable = true;
+        server = "13.79.72.159";
+      };
     };
     system = {
       autoUpgrade.enable = true;

@@ -5,7 +5,7 @@ with lib.ikl; let
 in {
   options.ikl.services.zabbix-agent = with types; {
     enable = mkBoolOpt false "Whether or not to enable Zabbix Agent.";
-    server = mkOpt str "zabbix.italikintra.net" "Zabbix Server or Proxy to connect to."
+    server = mkOpt str "zabbix.italikintra.net" "Zabbix Server or Proxy to connect to.";
   };
 
   config = mkIf cfg.enable {
