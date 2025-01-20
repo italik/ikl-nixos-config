@@ -57,6 +57,9 @@ in {
       package = pkgs.zabbix70.agent2;
       openFirewall = true;
       server = "127.0.0.1";
+      settings = {
+        ServerActive = "127.0.0.1";
+      };
     };
 
     services.postgresql.ensureDatabases = [ "zabbix" ];
