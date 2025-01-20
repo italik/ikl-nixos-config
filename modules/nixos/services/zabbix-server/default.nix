@@ -59,6 +59,7 @@ in {
       server = "127.0.0.1";
       settings = {
         ServerActive = "127.0.0.1";
+        Hostname = "Zabbix server";
       };
     };
 
