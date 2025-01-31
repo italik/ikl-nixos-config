@@ -8,7 +8,7 @@
 
   boot.initrd.availableKernelModules = [ "ata_piix" "floppy" "ohci_pci" "ehci_pci" "ahci" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
+  boot.kernelModules = [ "hv_storvsc" "hv_vmbus" "hv_netvsc" ];
   boot.extraModulePackages = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
