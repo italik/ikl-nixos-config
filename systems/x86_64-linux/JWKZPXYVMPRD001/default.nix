@@ -70,6 +70,7 @@ with lib.ikl; {
     services = {
       postgresql.enable = true;
       zabbix-proxy.enable = true;
+      zabbix-proxy.splash.enable = true;
     };
     system = {
       autoUpgrade.enable = true;
