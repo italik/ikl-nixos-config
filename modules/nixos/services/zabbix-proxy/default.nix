@@ -68,6 +68,9 @@ in {
         User = "root";
         RemainAfterExit = true;
       };
+      path = with pkgs; [
+        openssl
+      ];
     };
     
   };
