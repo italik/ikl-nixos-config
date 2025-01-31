@@ -62,6 +62,7 @@ in {
       script = ''
         set -eu
         [ ! -f ${pskPath} ] && openssl rand -hex 32 > ${pskPath} && chmod 400 ${pskPath} && chown zabbix:zabbix ${pskPath}
+        exit 0
       '';
       serviceConfig = {
         Type = "oneshot";
@@ -69,6 +70,7 @@ in {
         RemainAfterExit = true;
       };
       path = with pkgs; [
+        bash
         openssl
       ];
     };
