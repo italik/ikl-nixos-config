@@ -3,6 +3,7 @@ with lib;
 with lib.ikl; let
   cfg = config.ikl.services.zabbix-proxy;
   pskPath = "/data/secrets/zabbix-proxy-psk.key";
+  hostname = config.networking.hostName;
 in {
   options.ikl.services.zabbix-proxy = with types; {
     enable = mkBoolOpt false "Whether or not to enable Zabbix Proxy.";
@@ -21,7 +22,7 @@ in {
         TLSAccept = "psk";
         TLSConnect = "psk";
         TLSPSKFile = pskPath;
-        TLSPSKIdentity = networking.hostname;
+        TLSPSKIdentity = hostname;
       };
       database = {
         createLocally = true;
