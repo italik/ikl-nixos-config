@@ -40,6 +40,24 @@ in {
         echo -e "\033[1;31mSupport Telephone: 01937 848380\033[0m"
         echo -e "\033[1;31mSupport Email: support@italik.co.uk\033[0m"
         echo -e "\033[0m"
+        echo -e "\033[1;33mTesting connectivity to the Zabbix server"
+        echo -e "\033[1;33mTesting connection to zabbix.italikintra.net on TCP port 443"
+        nc -zw5 zabbix.italikintra.net 443 && {
+          echo -e "\033[1;32mConnection test to zabbix.italikintra.net on TCP port 443 succeeded"
+        } || {
+          echo -e "\033[1;31mFailed to reach zabbix.italikintra.net on TCP port 443"
+        }
+        echo -e "\033[1;33mTesting connection to zabbix.italikintra.net on TCP port 10051"
+        nc -zw5 zabbix.italikintra.net 10051 && {
+          echo -e "\033[1;32mConnection test to zabbix.italikintra.net on TCP port 10051 succeeded"
+        } || {
+          echo -e "\033[1;31mFailed to reach zabbix.italikintra.net on TCP port 10051"
+        }
+        echo -e "\033[0m"
+        echo -e "\033[1;33mConnectivity tests finished"
+        echo -e "\033[0m"
+        echo -e "\033[1;33mSystem boot completed"
+        echo -e "\033[0m"
         echo -e "\033[1;33mPress ESC twice to log in...\033[0m"
         echo -e "\033[1;33mPress Ctrl+Alt+Delete to reboot...\033[0m"
 
