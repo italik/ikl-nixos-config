@@ -74,6 +74,7 @@ with lib.ikl; {
     };
     system = {
       autoUpgrade.enable = true;
+      azure.enable = true;
       impermanence.enable = true;
       ssh.enable = true;
       users.enable = true;
