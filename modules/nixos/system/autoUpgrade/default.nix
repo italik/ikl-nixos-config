@@ -10,11 +10,12 @@ in {
   config = mkIf cfg.enable {
     system.autoUpgrade = {
       enable = true;
+      allowReboot = true;
       flake = "github:italik/ikl-nixos-config";
       flags = [
         "--update-input"
         "nixpkgs"
-        "--no-write-lock-file"
+        "--commit-lock-file"
         "-L" # Print build logs
       ];
       dates = "04:00";
