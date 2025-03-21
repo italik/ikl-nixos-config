@@ -3,7 +3,26 @@ with lib;
 with lib.ikl; {
   ### Change only options below here
 
-  networking.hostName = "JWKZPXYVMPRD001";
+  networking = {
+    hostName = "JWKZPXYVMPRD001";
+    interfaces.eth0 = {
+      ipv4.addresses = [
+        {
+          address = "192.168.1.14";
+          prefixLength = 24;
+        }
+      ];
+    };
+    defaultGateway = {
+      address = "192.168.1.254";
+      interface = "eth0";
+    };
+    nameservers = [
+      "192.168.1.4"
+      "1.1.1.1"
+    ];
+    useDHCP = false;
+  };
 
   ### Change only options above here
 
