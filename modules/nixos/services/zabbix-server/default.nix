@@ -24,6 +24,7 @@ in {
       openFirewall = true;
       settings = {
         ValueCacheSize = "100M";
+        CacheSize = "128M";
         DebugLevel = 3;
         LogFile = lib.mkForce "/var/log/zabbix/zabbix_server.log";
         LogFileSize = lib.mkForce 16;
