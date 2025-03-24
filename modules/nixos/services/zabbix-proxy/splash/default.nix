@@ -58,6 +58,10 @@ in {
         echo -e "\033[0m"
         echo -e "\033[1;33mSystem boot completed"
         echo -e "\033[0m"
+        echo -e "\033[1;33mConfigured Network Adapters:"
+        echo -e "\033[0m"
+        echo -e "\033[1;33m`ip addr show scope global`"
+        echo -e "\033[0m"
         echo -e "\033[1;33mPress ESC twice to log in...\033[0m"
         echo -e "\033[1;33mPress Ctrl+Alt+Delete to reboot...\033[0m"
 
