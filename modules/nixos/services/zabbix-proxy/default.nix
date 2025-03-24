@@ -19,6 +19,7 @@ in {
       package = pkgs.zabbix70.proxy-pgsql;
       extraPackages = []; # List of pkgs
       settings = {
+        StartPingers = "4";
         TLSAccept = "psk";
         TLSConnect = "psk";
         TLSPSKFile = pskPath;
