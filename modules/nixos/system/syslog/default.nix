@@ -11,7 +11,8 @@ in {
     services.rsyslogd = {
       enable = true;
       defaultConfig = ''
-        *.* action(type="omfwd" target="syslog.italikintra.net" port="2514" protocol="tcp" action.resumeRetryCount="100" queue.type="linkedList" queue.size="10000")
+        global(DefaultNetstreamDriverCAFile="/etc/ssl/certs/ca-bundle.crt")
+        *.* action(type="omfwd" target="syslog.italikintra.net" port="2514" protocol="tcp" StreamDriver="gtls" StreamDriverMode="1" action.resumeRetryCount="100" queue.type="linkedList" queue.size="10000")
       '';
     };
   };
