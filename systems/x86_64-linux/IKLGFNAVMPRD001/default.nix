@@ -73,4 +73,6 @@ with lib.ikl; {
       users.enable = true;
     };
   };
+
+  system.stateVersion = "25.05";
 }
