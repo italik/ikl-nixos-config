@@ -49,7 +49,7 @@ in {
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
 
-      virtualHosts."netbox.italikintra.net" = {
+      virtualHosts."grafana.italikintra.net" = {
         enableACME = true;
         forceSSL = true;
         kTLS = true;
