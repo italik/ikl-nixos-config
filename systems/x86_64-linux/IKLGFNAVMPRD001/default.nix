@@ -63,6 +63,8 @@ with lib.ikl; {
 
   ikl = {
     services = {
+      grafana.enable = true;
+      postgresql.enable = true;
     };
     system = {
       autoUpgrade.enable = true;
