@@ -17,8 +17,8 @@ in {
       settings = {
         server = {
           protocol = "socket";
-          enforce_domain = true;
-          root_url = cfg.vhost;
+          # enforce_domain = true;
+          root_url = concatStrings [ "https://" cfg.vhost ];
         };
         database = {
           user = "grafana";
@@ -48,8 +48,9 @@ in {
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
+      recommendedProxySettings = true;
 
-      virtualHosts."grafana.italikintra.net" = {
+      virtualHosts."${cfg.vhost}" = {
         enableACME = true;
         forceSSL = true;
         kTLS = true;

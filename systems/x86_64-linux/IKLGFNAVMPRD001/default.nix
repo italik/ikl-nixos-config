@@ -62,7 +62,10 @@ with lib.ikl; {
 
   ikl = {
     services = {
-      grafana.enable = true;
+      grafana = {
+        enable = true;
+        vhost = "grafana.italikintra.net";
+      };
       postgresql.enable = true;
     };
     system = {
