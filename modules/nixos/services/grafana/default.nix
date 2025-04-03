@@ -19,7 +19,6 @@ in {
           protocol = "socket";
           enforce_domain = true;
           root_url = cfg.vhost;
-          enforce_domain = true;
         };
         database = {
           user = "grafana";
