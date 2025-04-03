@@ -70,7 +70,6 @@ in {
       directories = [
         "/var/lib/acme"
         "/var/lib/grafana"
-        "/var/lib/postgresql"
       ];
     };
   };
