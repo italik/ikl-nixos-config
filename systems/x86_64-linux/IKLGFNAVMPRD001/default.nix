@@ -48,6 +48,16 @@ with lib.ikl; {
     useXkbConfig = true;
   };
 
+  sops.defaultSopsFile = ./secrets/IKLGFNAVMPRD001.yaml;
+  sops.age.keyFile = "/data/secrets/age-keys.txt";
+  sops.secrets = {
+    zabbix-psk = {
+      mode = "0440";
+      owner = "zabbix-agent";
+      group = "zabbix-agent";
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     age
     vim
@@ -67,6 +77,15 @@ with lib.ikl; {
         vhost = "grafana.italikintra.net";
       };
       postgresql.enable = true;
+      zabbix-agent = {
+        enable = true;
+        server = "13.79.72.159";
+        psk = {
+          enable = true;
+          identity = "IKLGFNAVMPRD001";
+          file = "/run/secrets/zabbix-psk";
+        };
+      };
     };
     system = {
       autoUpgrade.enable = true;
