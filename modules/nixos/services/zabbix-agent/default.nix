@@ -10,6 +10,7 @@ in {
     psk.enable = mkBoolOpt false "Whether or not to enable Zabbix Agent communication encryption with PSK";
     psk.identity = mkOpt str "" "Zabbix PSK Identity";
     psk.file = mkOpt str "" "Zabbix PSK File location";
+    nginxStubStatus = mkBoolOpt false "Whether or not to enable the stub_status page on localhost.";
   };
 
   config = mkIf cfg.enable {
@@ -26,5 +27,11 @@ in {
         TLSPSKFile = cfg.psk.file;
       };
     };
+    services.nginx.virtualHosts."localhost".locations."/basic_status".extraConfig = mkIf cfg.nginxStubStatus ''
+      stub_status;
+      allow 127.0.0.1;
+      allow ::1;
+      deny all;
+    '';
   };
 }
