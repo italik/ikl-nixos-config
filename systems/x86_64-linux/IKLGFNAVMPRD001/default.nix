@@ -85,6 +85,7 @@ with lib.ikl; {
           identity = "IKLGFNAVMPRD001";
           file = "/run/secrets/zabbix-psk";
         };
+        nginxStubStatus = true;
       };
     };
     system = {
