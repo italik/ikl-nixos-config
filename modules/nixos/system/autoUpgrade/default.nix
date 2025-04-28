@@ -11,6 +11,10 @@ in {
     system.autoUpgrade = {
       enable = true;
       allowReboot = true;
+      rebootWindow = {
+        lower = "01:00";
+        upper = "06:00";
+      };
       flake = "github:italik/ikl-nixos-config";
       flags = [
         "-L" # Print build logs
