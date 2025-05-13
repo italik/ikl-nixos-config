@@ -5,7 +5,7 @@ with lib.ikl; {
 
   networking = {
     hostName = "MASZPXYSVPRD001";
-    interfaces.eth0 = {
+    interfaces.enp1s0 = {
       ipv4.addresses = [
         {
           address = "10.1.2.1";
@@ -15,7 +15,7 @@ with lib.ikl; {
     };
     defaultGateway = {
       address = "10.1.2.254";
-      interface = "eth0";
+      interface = "enp1s0";
     };
     nameservers = [
       "1.1.1.1"
