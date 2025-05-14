@@ -18,8 +18,8 @@ with lib.ikl; {
       interface = "enp1s0";
     };
     nameservers = [
-      "1.1.1.1"
-      "1.0.0.1"
+      "10.0.161.62"
+      "10.0.161.61"
     ];
     useDHCP = false;
   };
