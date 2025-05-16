@@ -30,11 +30,9 @@ with lib.ikl; {
     ./hardware-configuration.nix
   ];
 
-  boot.loader.grub = {
-    enable = true;
-    devices = lib.mkForce [ "/dev/sda" ];
-  };
-
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/efi";
 
   time.timeZone = "Europe/London";
 
@@ -55,9 +53,10 @@ with lib.ikl; {
     fsType = "ext4";
   };
 
-  fileSystems."/boot" = {
+  fileSystems."/efi" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
+    options = [ "fmask=0022" "dmask=0022" ];
   };
 
 
