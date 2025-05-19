@@ -36,6 +36,11 @@ with lib.ikl; {
 
   time.timeZone = "Europe/London";
 
+  services.timesyncd.servers = [
+    "10.0.161.62"
+    "10.0.161.61"
+  ];
+
   fileSystems."/" = lib.mkForce {
     device = "none";
     fsType = "tmpfs";
