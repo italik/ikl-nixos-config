@@ -7,6 +7,7 @@ with lib.ikl; let
 in {
   options.ikl.services.zabbix-proxy = with types; {
     enable = mkBoolOpt false "Whether or not to enable Zabbix Proxy.";
+    cacheSize = mkOpt str "32M" "Configuration cache size.";
   };
 
   config = mkIf cfg.enable {
@@ -19,6 +20,7 @@ in {
       package = pkgs.zabbix70.proxy-pgsql;
       extraPackages = []; # List of pkgs
       settings = {
+        CacheSize = cfg.cacheSize;
         StartPingers = "4";
         TLSAccept = "psk";
         TLSConnect = "psk";

@@ -93,6 +93,7 @@ with lib.ikl; {
     services = {
       postgresql.enable = true;
       zabbix-proxy.enable = true;
+      zabbix-proxy.cacheSize = "64M";
       zabbix-proxy.splash.enable = true;
     };
     system = {
