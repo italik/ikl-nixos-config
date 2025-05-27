@@ -4,6 +4,7 @@ with lib.ikl; {
   imports = with inputs; [
     ./hardware-configuration.nix
     ./snmpd-config.nix
+    (modulesPath + "/virtualisation/azure-common.nix")
   ];
 
   boot.loader.grub = {
