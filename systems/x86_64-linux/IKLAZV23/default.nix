@@ -105,6 +105,7 @@ with lib.ikl; {
       azure.enable = true;
       impermanence.enable = true;
       ssh.enable = true;
+      syslog.enable = true;
       users.enable = true;
     };
   };
