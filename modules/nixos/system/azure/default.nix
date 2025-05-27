@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, modulesPath, ... }:
+{ options, config, lib, pkgs, ... }:
 with lib;
 with lib.ikl; let
   cfg = config.ikl.system.azure;
@@ -33,9 +33,5 @@ in {
         "/var/lib/waagent"
       ];
     };
-
-    imports = with inputs; [
-      (modulesPath + "/virtualisation/azure-common.nix")
-    ];
   };
 }
