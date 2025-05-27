@@ -1,7 +1,7 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, modulesPath, ... }:
 with lib;
 with lib.ikl; {
-  imports = with inputs; [
+  imports = [
     ./hardware-configuration.nix
     ./snmpd-config.nix
     (modulesPath + "/virtualisation/azure-common.nix")
