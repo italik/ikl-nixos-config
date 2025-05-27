@@ -3,6 +3,7 @@ with lib;
 with lib.ikl; {
   imports = with inputs; [
     ./hardware-configuration.nix
+    (modulesPath + "/virtualisation/azure-common.nix")
   ];
 
   boot.loader.grub = {
