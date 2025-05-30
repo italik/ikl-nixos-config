@@ -4,24 +4,24 @@ with lib.ikl; {
   ### Change only options below here
 
   networking = {
-    hostName = "CAMZPXYVMPRD001";
-#    interfaces.eth0 = {
-#      ipv4.addresses = [
-#        {
-#          address = "";
-#          prefixLength = 24;
-#        }
-#      ];
-#    };
-#    defaultGateway = {
-#      address = "";
-#      interface = "eth0";
-#    };
-#    nameservers = [
-#      ""
-#      ""
-#    ];
-#    useDHCP = false;
+    hostName = "CAMV05";
+    interfaces.eth0 = {
+      ipv4.addresses = [
+        {
+          address = "10.1.3.5";
+          prefixLength = 24;
+        }
+      ];
+    };
+    defaultGateway = {
+      address = "10.1.3.254";
+      interface = "eth0";
+    };
+    nameservers = [
+      "10.1.3.8"
+      "10.1.3.14"
+    ];
+    useDHCP = false;
   };
 
   ### Change only options above here
