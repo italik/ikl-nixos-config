@@ -2,8 +2,11 @@
 with lib;
 with lib.ikl; let
   cfg = config.ikl.system.azure;
-  waagent = (pkgs.waagent.override {
-    python3 = pkgs.python39;
+  waagent = pkgs.waagent.overridePythonAttrs (oldAttrs: rec {
+    # Ensure Distutils (for Python 3.12) is on the build inputs
+    propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
+      pkgs.python312Packages.distutils
+    ];
   });
 in {
   options.ikl.system.azure = with types; {
@@ -16,11 +19,14 @@ in {
     networking.firewall.allowedUDPPorts = [ 68 ];
 
     # waagent should be enabled by including azure-common in the system imports
-    services.waagent.extraPackages = with pkgs; [
-      gawk
-      gnupg
-      which
-    ];
+    services.waagent = {
+      package = waagent;
+      extraPackages = with pkgs; [
+        gawk
+        gnupg
+        which
+      ];
+    };
 
     environment.persistence."/data" = {
       directories = [
