@@ -22,19 +22,6 @@ in {
       which
     ];
 
-    services.logrotate = {
-      enable = true;
-      settings."/var/log/waagent.log" = {
-        compress = true;
-        frequency = "monthly";
-        rotate = 6;
-      };
-    };
-
-    security.sudo.extraConfig = ''
-      #includedir /etc/sudoers.d
-    '';
-
     environment.persistence."/data" = {
       directories = [
         "/var/lib/waagent"
