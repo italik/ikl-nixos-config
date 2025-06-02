@@ -20,6 +20,10 @@ in {
 
     # waagent should be enabled by including azure-common in the system imports
     services.waagent = {
+      settings = {
+        Logs.Verbose = cfg.verboseLogging;
+        ResourceDisk.Format = cfg.mountResourceDisk;
+      };
       package = waagent;
       extraPackages = with pkgs; [
         gawk
