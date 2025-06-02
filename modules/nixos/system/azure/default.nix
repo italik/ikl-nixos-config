@@ -15,6 +15,13 @@ in {
   config = mkIf cfg.enable {
     networking.firewall.allowedUDPPorts = [ 68 ];
 
+    # waagent should be enabled by including azure-common in the system imports
+    services.waagent.extraPackages = with pkgs; [
+      gawk
+      gnupg
+      which
+    ];
+
     services.logrotate = {
       enable = true;
       settings."/var/log/waagent.log" = {
