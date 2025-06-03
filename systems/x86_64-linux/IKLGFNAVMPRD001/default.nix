@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 with lib;
 with lib.ikl; {
-  imports = with inputs; [
+  imports = [
     ./hardware-configuration.nix
     (modulesPath + "/virtualisation/azure-common.nix")
   ];
