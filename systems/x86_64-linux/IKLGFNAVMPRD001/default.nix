@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, modulesPath, ... }:
 with lib;
 with lib.ikl; {
   imports = [
