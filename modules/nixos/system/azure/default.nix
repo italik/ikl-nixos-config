@@ -37,5 +37,26 @@ in {
         "/var/lib/waagent"
       ];
     };
+    # Workaround buggy Azure Linux agent
+    systemd.timers.create_waagent_symlinks = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnBootSec = "5m";
+        Unit = "create_waagent_symlinks.service";
+      };
+    };
+    systemd.services.create_waagent_symlinks = {
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+      };
+      script = ''
+        ln -sf /run/current-system/sw/bin/base64 /usr/bin/base64
+        ln -sf ${pkgs.openssl}/bin/openssl /usr/bin/openssl
+        ln -sf /run/wrappers/bin/mount /bin/mount
+        mkdir -p /usr/sbin
+        ln -sf ${waagent}/bin/waagent /usr/sbin/waagent
+      '';
+    };
   };
 }
