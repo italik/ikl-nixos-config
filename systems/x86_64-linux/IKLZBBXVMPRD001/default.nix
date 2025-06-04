@@ -64,7 +64,14 @@ with lib.ikl; {
   ikl = {
     services = {
       postgresql.enable = true;
-      zabbix-server.enable = true;
+      zabbix-server = {
+        enable = true;
+        syslog = {
+          enable = true;
+          server = "syslog.italikintra.net";
+          port = 3514;
+        };
+      };
     };
     system = {
       autoUpgrade.enable = true;

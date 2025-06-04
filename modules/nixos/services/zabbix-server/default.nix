@@ -47,7 +47,7 @@ in {
           type="omfwd"
           protocol="tcp"
           target="${cfg.syslog.server}"
-          port="${cfg.syslog.port}"
+          port="${builtins.toString cfg.syslog.port}"
           action.resumeRetryCount="100"
           queue.type="linkedList"
           queue.size="10000"
