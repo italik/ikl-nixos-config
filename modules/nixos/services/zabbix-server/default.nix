@@ -5,6 +5,9 @@ with lib.ikl; let
 in {
   options.ikl.services.zabbix-server = with types; {
     enable = mkBoolOpt false "Whether or not to enable Zabbix Server.";
+    syslog.enable = mkBoolOpt false "Whether or not to enable syslog forwarding of Zabbix server logs.";
+    syslog.server = mkOpt str "" "Syslog server to send Zabbix server logs to.";
+    syslog.port = mkOpt port "" "Port for syslog server.";
   };
 
   config = mkIf cfg.enable {
@@ -31,6 +34,27 @@ in {
         LogType = lib.mkForce "file";
       };
     };
+
+    services.rsyslogd.extraConfig = mkIf cfg.syslog.enable ''
+      module(load="imfile")
+      input(type="imfile"
+            File="/var/log/zabbix/zabbix_server.log"
+            Tag="zabbix_server"
+            Severity="info"
+            Facility="local0")
+      if $syslogfacility-text == "local0" then {
+        action(
+          type="omfwd"
+          protocol="tcp"
+          target="${cfg.syslog.server}"
+          port="${cfg.syslog.port}"
+          action.resumeRetryCount="100"
+          queue.type="linkedList"
+          queue.size="10000"
+        )
+        stop
+      }
+    '';
 
     services.zabbixWeb = {
       enable = true;
