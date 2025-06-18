@@ -26,7 +26,7 @@ with lib.ikl; {
 
   ### Change only options above here
 
-  imports = with inputs; [
+  imports = [
     ./hardware-configuration.nix
   ];
 
