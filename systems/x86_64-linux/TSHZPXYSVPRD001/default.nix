@@ -25,6 +25,9 @@ with lib.ikl; {
 
   ### Change only options above here
 
+  # Disable sleep on lid close
+  services.logind.lidSwitch = "ignore";
+
   imports = [
     ./hardware-configuration.nix
   ];
