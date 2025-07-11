@@ -5,6 +5,7 @@ with lib.ikl; let
 in {
   options.ikl.services.netbox = with types; {
     enable = mkBoolOpt false "Whether or not to enable Netbox.";
+    vhost = mkOpt str "" "vHost used for Netbox. e.g. netbox.example.com";
   };
 
   config = mkIf cfg.enable {
@@ -16,7 +17,7 @@ in {
       secretKeyFile = "/data/secrets/netboxSecret";
       settings = {
         ALLOWED_HOSTS = [ "[::1]" ];
-        CSRF_TRUSTED_ORIGINS = [ "https://netbox.italikintra.net" ];
+        CSRF_TRUSTED_ORIGINS = [ "https://${cfg.vhost}" ];
       };
     };
 
@@ -27,7 +28,7 @@ in {
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
 
-      virtualHosts."netbox.italikintra.net" = {
+      virtualHosts."${cfg.vhost}" = {
         enableACME = true;
         forceSSL = true;
         kTLS = true;

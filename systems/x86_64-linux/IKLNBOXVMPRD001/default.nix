@@ -11,7 +11,7 @@ with lib.ikl; {
     devices = lib.mkForce [ "/dev/sda" ];
   };
 
-  networking.hostName = "netbox-poc";
+  networking.hostName = "IKLNBOXVMPRD001";
 
   time.timeZone = "Europe/London";
 
@@ -63,7 +63,10 @@ with lib.ikl; {
 
   ikl = {
     services = {
-      netbox.enable = true;
+      netbox = {
+        enable = true;
+        vhost = "netbox.italikintra.net";
+      };
     };
     system = {
       autoUpgrade.enable = true;
@@ -73,4 +76,5 @@ with lib.ikl; {
       users.enable = true;
     };
   };
+  system.stateVersion = "25.11";
 }
