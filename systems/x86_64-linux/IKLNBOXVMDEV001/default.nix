@@ -70,6 +70,16 @@ with lib.ikl; {
         sslCertificate = "/data/secrets/certificate.pem";
         sslCertificateKey = "/data/secrets/certificate.key";
       };
+      zabbix-agent = {
+        enable = true;
+        server = "13.79.72.159";
+        psk = {
+          enable = true;
+          identity = "IKLNBOXVMDEV001";
+          file = "/data/secrets/zabbix-psk";
+        };
+        nginxStubStatus = true;
+      };
     };
     system = {
       autoUpgrade.enable = true;
