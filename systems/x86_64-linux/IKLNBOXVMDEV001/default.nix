@@ -66,6 +66,9 @@ with lib.ikl; {
       netbox = {
         enable = true;
         vhost = "dev.netbox.italikintra.net";
+        acme.enable = false;
+        sslCertificate = "/data/secrets/certificate.pem";
+        sslCertificateKey = "/data/secrets/certificate.key";
       };
     };
     system = {

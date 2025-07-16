@@ -6,6 +6,9 @@ in {
   options.ikl.services.netbox = with types; {
     enable = mkBoolOpt false "Whether or not to enable Netbox.";
     vhost = mkOpt str "" "vHost used for Netbox. e.g. netbox.example.com";
+    acme.enable = mkBoolOpt true "Whether or not to enable ACME.";
+    sslCertificate = mkOpt str "" "Path to SSL certificate.";
+    sslCertificateKey = mkOpt str "" "Path to SSL certificate key.";
   };
 
   config = mkIf cfg.enable {
@@ -29,7 +32,9 @@ in {
       recommendedTlsSettings = true;
 
       virtualHosts."${cfg.vhost}" = {
-        enableACME = true;
+        enableACME = cfg.acme.enable;
+        sslCertificate = cfg.sslCertificate;
+        sslCertificateKey = cfg.sslCertificateKey;
         forceSSL = true;
         kTLS = true;
         locations."/" = {
@@ -41,15 +46,14 @@ in {
     };
     users.users.nginx.extraGroups = [ "netbox" ];
     
-    security.acme.acceptTerms = true;
-    security.acme.defaults.email = "alerts@italik.co.uk";
+    security.acme.acceptTerms = cfg.acme.enable;
+    security.acme.defaults.email = mkIf cfg.acme.enable "alerts@italik.co.uk";
     # Setup folders (see https://github.com/nix-community/impermanence)
     environment.persistence."/data" = {
       directories = [
-        "/var/lib/acme"
         "/var/lib/netbox"
         "/var/lib/postgresql"
-      ];
+      ] ++ lib.optional cfg.acme.enable "/var/lib/acme";
     };
   };
 }
