@@ -66,6 +66,19 @@ with lib.ikl; {
       netbox = {
         enable = true;
         vhost = "netbox.italikintra.net";
+        acme.enable = false;
+        sslCertificate = "/data/secrets/certificate.pem";
+        sslCertificateKey = "/data/secrets/certificate.key";
+      };
+      zabbix-agent = {
+        enable = true;
+        server = "13.79.72.159";
+        psk = {
+          enable = true;
+          identity = "IKLNBOXVMPRD001";
+          file = "/data/secrets/zabbix-psk";
+        };
+        nginxStubStatus = true;
       };
     };
     system = {
