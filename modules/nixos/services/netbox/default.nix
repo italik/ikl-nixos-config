@@ -20,7 +20,10 @@ in {
       listenAddress = "[::1]";
       secretKeyFile = "/data/secrets/netboxSecret";
       settings = {
-        ALLOWED_HOSTS = [ "[::1]" ];
+        ALLOWED_HOSTS = [
+          "[::1]"
+          "${cfg.vhost}"
+        ];
         CSRF_TRUSTED_ORIGINS = [ "https://${cfg.vhost}" ];
       };
     };
@@ -31,6 +34,7 @@ in {
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
       recommendedTlsSettings = true;
+      recommendedProxySettings = true;
 
       virtualHosts."${cfg.vhost}" = {
         enableACME = cfg.acme.enable;
