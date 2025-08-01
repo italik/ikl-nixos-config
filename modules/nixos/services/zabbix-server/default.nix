@@ -26,6 +26,7 @@ in {
       };
       openFirewall = true;
       settings = {
+        AlertScriptsPath="${pkgs.ikl.zabbix-alert-scripts}/bin";
         ValueCacheSize = "100M";
         CacheSize = "128M";
         DebugLevel = 3;
