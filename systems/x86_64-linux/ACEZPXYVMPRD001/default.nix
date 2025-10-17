@@ -5,6 +5,9 @@ with lib.ikl; {
 
   networking.hostName = "ACEZPXYVMPRD001";
 
+  # Temporarily allow sudo without password
+  security.sudo.wheelNeedsPassword = false;
+
   ### Change only options above here
 
   imports = [
