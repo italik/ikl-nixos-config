@@ -358,7 +358,7 @@ in {
           signing_passphrase = ""; # Empty will regenerate on each launch
           signing_passphrase_file = "";
           token_validation = 0;
-          max_upload_file_size = 536870912; # 512M
+          max_upload_file_size = 1073741824; # 1G
           cors = {
             enabled = true;
             allowed_origins = []; # List of str
