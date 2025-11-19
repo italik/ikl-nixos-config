@@ -5,6 +5,7 @@ with lib.ikl; let
 in {
   options.ikl.services.zabbix-server = with types; {
     enable = mkBoolOpt false "Whether or not to enable Zabbix Server.";
+    settings.startVMwareCollectors = mkOpt int 0 "The number of pre-forked VMware collector instances.";
     syslog.enable = mkBoolOpt false "Whether or not to enable syslog forwarding of Zabbix server logs.";
     syslog.server = mkOpt str "" "Syslog server to send Zabbix server logs to.";
     syslog.port = mkOpt port "" "Port for syslog server.";
