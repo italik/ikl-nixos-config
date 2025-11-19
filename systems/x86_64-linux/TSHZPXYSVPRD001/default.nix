@@ -26,7 +26,17 @@ with lib.ikl; {
   ### Change only options above here
 
   # Disable sleep on lid close
-  services.logind.lidSwitch = "ignore";
+  services.logind = {
+    lidSwitch = "ignore";
+    lidSwitchDocked = "ignore";
+    lidSwitchExternalPower = "ignore";
+    extraConfig = ''
+      IdleAction=ignore
+      HandlePowerKey=ignore
+      HandleSuspendKey=ignore
+    '';
+  };
+  systemd.targets.sleep.enable = false;
 
   imports = [
     ./hardware-configuration.nix
