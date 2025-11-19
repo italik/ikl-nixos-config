@@ -16,7 +16,7 @@ in {
 
     services.netbox = {
       enable = true;
-      package = pkgs.netbox_4_3;
+      package = pkgs.netbox;
       listenAddress = "[::1]";
       secretKeyFile = "/data/secrets/netboxSecret";
       settings = {
