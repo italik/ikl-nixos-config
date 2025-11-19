@@ -1,7 +1,7 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, modulesPath, ... }:
 with lib;
 with lib.ikl; {
-  imports = with inputs; [
+  imports = [
     ./hardware-configuration.nix
     ./snmpd-config.nix
     (modulesPath + "/virtualisation/azure-common.nix")
@@ -96,4 +96,5 @@ with lib.ikl; {
 
   # Override SSH port as SFTPGo uses port 22
   services.openssh.ports = lib.mkForce [ 7356 ];
+  system.stateVersion = "24.11";
 }

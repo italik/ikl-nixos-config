@@ -1,7 +1,7 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, modulesPath, ... }:
 with lib;
 with lib.ikl; {
-  imports = with inputs; [
+  imports = [
     ./hardware-configuration.nix
     (modulesPath + "/virtualisation/azure-common.nix")
   ];
@@ -75,4 +75,5 @@ with lib.ikl; {
       users.enable = true;
     };
   };
+  system.stateVersion = "24.11";
 }
