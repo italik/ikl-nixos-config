@@ -34,6 +34,7 @@ in {
         LogFile = lib.mkForce "/var/log/zabbix/zabbix_server.log";
         LogFileSize = lib.mkForce 16;
         LogType = lib.mkForce "file";
+        StartVMwareCollectors = cfg.settings.startVMwareCollectors;
       };
     };
 
