@@ -66,6 +66,9 @@ with lib.ikl; {
       postgresql.enable = true;
       zabbix-server = {
         enable = true;
+        settings = {
+          startVMwareCollectors = 2;
+        };
         syslog = {
           enable = true;
           server = "syslog.italikintra.net";
