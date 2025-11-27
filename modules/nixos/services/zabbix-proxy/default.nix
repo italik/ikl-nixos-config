@@ -8,6 +8,7 @@ in {
   options.ikl.services.zabbix-proxy = with types; {
     enable = mkBoolOpt false "Whether or not to enable Zabbix Proxy.";
     cacheSize = mkOpt str "32M" "Configuration cache size.";
+    settings.startVMwareCollectors = mkOpt int 0 "The number of pre-forked VMware collector instances.";
   };
 
   config = mkIf cfg.enable {
@@ -22,6 +23,7 @@ in {
       settings = {
         CacheSize = cfg.cacheSize;
         StartPingers = "4";
+        StartVMwareCollectors = cfg.settings.startVMwareCollectors;
         TLSAccept = "psk";
         TLSConnect = "psk";
         TLSPSKFile = pskPath;
