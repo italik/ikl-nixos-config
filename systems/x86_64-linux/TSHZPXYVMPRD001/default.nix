@@ -4,7 +4,7 @@ with lib.ikl; {
   ### Change only options below here
 
   networking = {
-    hostName = "TSHZPXYSVPRD001";
+    hostName = "TSHZPXYVMPRD001";
     interfaces.eth0 = {
       ipv4.addresses = [
         {
