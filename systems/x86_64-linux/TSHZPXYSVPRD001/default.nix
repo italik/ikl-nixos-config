@@ -5,7 +5,7 @@ with lib.ikl; {
 
   networking = {
     hostName = "TSHZPXYSVPRD001";
-    interfaces.eno1 = {
+    interfaces.eth0 = {
       ipv4.addresses = [
         {
           address = "10.1.2.3";
@@ -15,7 +15,7 @@ with lib.ikl; {
     };
     defaultGateway = {
       address = "10.1.2.254";
-      interface = "eno1";
+      interface = "eth0";
     };
     nameservers = [
       "10.1.2.2"
@@ -25,26 +25,14 @@ with lib.ikl; {
 
   ### Change only options above here
 
-  # Disable sleep on lid close
-  services.logind = {
-    lidSwitch = "ignore";
-    lidSwitchDocked = "ignore";
-    lidSwitchExternalPower = "ignore";
-    extraConfig = ''
-      IdleAction=ignore
-      HandlePowerKey=ignore
-      HandleSuspendKey=ignore
-    '';
-  };
-  systemd.targets.sleep.enable = false;
-
   imports = [
     ./hardware-configuration.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/efi";
+  boot.loader.grub = {
+    enable = true;
+    devices = lib.mkForce [ "/dev/sda" ];
+  };
 
   time.timeZone = "Europe/London";
 
@@ -69,14 +57,8 @@ with lib.ikl; {
     fsType = "ext4";
   };
 
-  fileSystems."/efi" = {
-    device = "/dev/disk/by-label/EFI";
-    fsType = "vfat";
-    options = [ "fmask=0022" "dmask=0022" ];
-  };
-
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
+    device = "/dev/disk/by-label/BOOT";
     fsType = "ext2";
   };
 
@@ -108,7 +90,6 @@ with lib.ikl; {
     services = {
       postgresql.enable = true;
       zabbix-proxy.enable = true;
-      zabbix-proxy.cacheSize = "64M";
       zabbix-proxy.splash.enable = true;
     };
     system = {
@@ -119,5 +100,5 @@ with lib.ikl; {
     };
   };
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }
