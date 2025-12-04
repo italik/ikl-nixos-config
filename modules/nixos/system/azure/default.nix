@@ -2,12 +2,13 @@
 with lib;
 with lib.ikl; let
   cfg = config.ikl.system.azure;
-  waagent = pkgs.waagent.overridePythonAttrs (oldAttrs: rec {
-    # Ensure Distutils (for Python 3.12) is on the build inputs
-    propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
-      pkgs.python312Packages.distutils
-    ];
-  });
+  waagent = pkgs.waagent;
+#  waagent = pkgs.waagent.overridePythonAttrs (oldAttrs: rec {
+#    # Ensure Distutils (for Python 3.12) is on the build inputs
+#    propagatedBuildInputs = oldAttrs.propagatedBuildInputs ++ [
+#      pkgs.python312Packages.distutils
+#    ];
+#  });
 in {
   options.ikl.system.azure = with types; {
     enable = mkBoolOpt false "Whether or not to enable Azure extensions.";
