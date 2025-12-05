@@ -3,7 +3,6 @@ with lib;
 with lib.ikl; {
   imports = [
     ./hardware-configuration.nix
-    ./snmpd-config.nix
     (modulesPath + "/virtualisation/azure-common.nix")
   ];
 
@@ -53,16 +52,6 @@ with lib.ikl; {
   sops.defaultSopsFile = ./secrets/IKLAZV23.yaml;
   sops.age.keyFile = "/data/secrets/age-keys.txt";
   sops.secrets = {
-    snmpd-string = {
-      mode = "0440";
-      owner = "root";
-      group = "root";
-    };
-    snmpd-ip = {
-      mode = "0440";
-      owner = "root";
-      group = "root";
-    };
     zabbix-psk = {
       mode = "0440";
       owner = "zabbix-agent";
