@@ -49,16 +49,6 @@ with lib.ikl; {
     useXkbConfig = true;
   };
 
-  sops.defaultSopsFile = ./secrets/IKLAZV23.yaml;
-  sops.age.keyFile = "/data/secrets/age-keys.txt";
-  sops.secrets = {
-    zabbix-psk = {
-      mode = "0440";
-      owner = "zabbix-agent";
-      group = "zabbix-agent";
-    };
-  };
-
   environment.systemPackages = with pkgs; [
     age
     vim
@@ -85,7 +75,7 @@ with lib.ikl; {
         psk = {
           enable = true;
           identity = "IKLAZV23";
-          file = "/run/secrets/zabbix-psk";
+          file = "/data/secrets/zabbix-psk";
         };
       };
     };

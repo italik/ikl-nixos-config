@@ -1,9 +1,7 @@
 keys:
-  - &IKLAZV23 age1580c6m75egpzw2qyg0jpjm0juj3mefgg9a7825vg4x8qk3dzwdyqwe2vw3
   - &IKLGFNAVMPRD001 age1mah9qvmekkz683cw0ge6s2cwyzk7knls6mm787p7g2gu9fr3qsqqmc4ezd
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
-          - *IKLAZV23
           - *IKLGFNAVMPRD001
