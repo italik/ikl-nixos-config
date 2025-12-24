@@ -30,6 +30,7 @@ in {
     };
     nix.optimise = {
       automatic = true;
+      dates = "05:00";
     };
   };
 }
