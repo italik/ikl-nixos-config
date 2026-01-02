@@ -46,6 +46,7 @@ in {
         )
       '';
       extraConfig = mkIf cfg.sftpgo ''
+        module(load="imfile")
         input(type="imfile"
               File="/var/log/sftpgo/sftpgo.log"
               Tag="sftpgo"
@@ -55,6 +56,7 @@ in {
     };
 
     systemd.services.sftpgo.environment.SFTPGO_LOG_FILE_PATH = mkIf cfg.sftpgo "/var/log/sftpgo/sftpgo.log";
+    systemd.services.sftpgo.serviceConfig.LogsDirectory = "sftpgo";
 
   };
 }
