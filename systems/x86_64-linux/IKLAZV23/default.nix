@@ -84,7 +84,10 @@ with lib.ikl; {
       azure.enable = true;
       impermanence.enable = true;
       ssh.enable = true;
-      syslog.enable = true;
+      syslog = {
+        enable = true;
+        sftpgo = true;
+      };
       users.enable = true;
     };
   };
