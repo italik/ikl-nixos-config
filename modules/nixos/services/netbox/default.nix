@@ -5,6 +5,7 @@ with lib.ikl; let
 in {
   options.ikl.services.netbox = with types; {
     enable = mkBoolOpt false "Whether or not to enable Netbox.";
+    package = mkOpt package pkgs.netbox "Netbox package to use.";
     vhost = mkOpt str "" "vHost used for Netbox. e.g. netbox.example.com";
     acme.enable = mkBoolOpt true "Whether or not to enable ACME.";
     sslCertificate = mkOpt str "" "Path to SSL certificate.";
@@ -16,7 +17,7 @@ in {
 
     services.netbox = {
       enable = true;
-      package = pkgs.netbox;
+      package = cfg.package;
       listenAddress = "[::1]";
       secretKeyFile = "/data/secrets/netboxSecret";
       settings = {
