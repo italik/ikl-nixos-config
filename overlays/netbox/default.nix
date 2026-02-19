@@ -8,8 +8,8 @@ final: prev:
     src = prev.fetchFromGitHub {
       owner = "netbox-community";
       repo = "netbox";
-      tag = "v4.5.2";
-      hash = "sha256-JGW7lw10mbYfU5C6+2GWalzIOTzo7nEs+MV3jM1vgIA=";
+      tag = "v4.5.3";
+      hash = "sha256-mBEALlYmp3QCow+dmb0EsfaK6Sx2gd48cxa3QunYmMA=";
     };
   });
 }
