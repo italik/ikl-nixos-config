@@ -92,16 +92,24 @@ in {
       };
     };
 
-    services.postgresql.ensureDatabases = [ "zabbix" ];
-    services.postgresql.ensureUsers = [
-      {
-        name = "zabbix";
-        ensureDBOwnership = true;
-      }
-    ];
-    services.postgresql.authentication = ''
-      local zabbix  zabbix  peer
-    '';
+    services.postgresql = {
+      ensureDatabases = [ "zabbix" ];
+      ensureUsers = [
+        {
+          name = "zabbix";
+          ensureDBOwnership = true;
+        }
+      ];
+      authentication = ''
+        local zabbix  zabbix  peer
+      '';
+      extensions = ps: with ps; [
+        timescaledb
+      ];
+      settings.shared_preload_libraries = [
+        "timescaledb"
+      ];
+    };
     
     security.acme.acceptTerms = true;
     security.acme.defaults.email = "alerts@italik.co.uk";
