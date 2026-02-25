@@ -71,12 +71,13 @@ in {
     # OAuth2 Proxy
     services.oauth2-proxy = mkIf cfg.saml.enable {
       enable = true;
+      email.domains = [ "*" ];
       keyFile = cfg.saml.keyFile;
       nginx = {
         domain = cfg.vhost;
-        virtualHosts = [
-          cfg.vhost
-        ];
+        virtualHosts = {
+          "cfg.vhost" = {};
+        };
       };
       scope = "openid";
     };
