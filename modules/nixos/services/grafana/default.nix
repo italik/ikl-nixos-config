@@ -60,6 +60,11 @@ in {
           proxyPass = "http://unix:/run/grafana/grafana.sock";
           proxyWebsockets = true;
         };
+        extraConfig = mkIf cfg.saml.enable ''
+          proxy_buffer_size   128k;
+          proxy_buffers   4 256k;
+          proxy_busy_buffers_size   256k;
+        '';
       };
     };
     users.users.nginx.extraGroups = [ "grafana" ];
