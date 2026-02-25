@@ -94,6 +94,7 @@ in {
       provider = "oidc";
       reverseProxy = true;
       scope = "openid";
+      setXauthrequest = true;
       extraConfig = {
         redis-connection-url = "redis://127.0.0.1";
         session-store-type = "redis";
