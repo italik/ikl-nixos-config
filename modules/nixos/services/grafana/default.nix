@@ -28,6 +28,13 @@ in {
           name = "grafana";
           host = "/run/postgresql";
         };
+        "auth.proxy" = mkIf cfg.saml.enable {
+          enabled = true;
+          header_name = "X-User";
+          header_property = "username";
+          auto_sign_up = true;
+          headers = "Email:X-Email";
+        };
       };
     };
 
@@ -94,7 +101,7 @@ in {
     };
 
     # Redis Configuration
-    services.redis.servers.oauth2-proxy = {
+    services.redis.servers.oauth2-proxy = mkIf cfg.saml.enable {
       enable = true;
       port = 6379;
     };
