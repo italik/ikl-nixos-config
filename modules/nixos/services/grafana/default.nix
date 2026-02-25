@@ -6,6 +6,8 @@ in {
   options.ikl.services.grafana = with types; {
     enable = mkBoolOpt false "Whether or not to enable Grafana.";
     vhost = mkOpt str "" "Primary FQDN.";
+    saml.enable = mkBoolOpt false "Whether or not to enable SAML support for Grafana";
+    saml.keyFile = mkOpt str "" "Path to environment variable configuration for OAuth2 Proxy.";
   };
 
   config = mkIf cfg.enable {
@@ -65,6 +67,17 @@ in {
     # ACME config
     security.acme.acceptTerms = true;
     security.acme.defaults.email = "alerts@italik.co.uk";
+
+    # OAuth2 Proxy
+    services.oauth2-proxy = mkIf cfg.saml.enable {
+      enable = true;
+      keyFile = cfg.keyFile;
+      nginx = {
+        domain = cfg.vhost;
+      };
+      provider = "entra-id";
+      scope = "openid";
+    };
 
     # Impermanence config
     environment.persistence."/data" = {
