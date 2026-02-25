@@ -76,6 +76,10 @@ with lib.ikl; {
       grafana = {
         enable = true;
         vhost = "grafana.italikintra.net";
+        saml = {
+          enable = true;
+          keyFile = "/data/secrets/oauth2-proxy";
+        };
       };
       postgresql.enable = true;
       zabbix-agent = {

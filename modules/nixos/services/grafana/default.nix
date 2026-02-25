@@ -71,7 +71,7 @@ in {
     # OAuth2 Proxy
     services.oauth2-proxy = mkIf cfg.saml.enable {
       enable = true;
-      keyFile = cfg.keyFile;
+      keyFile = cfg.saml.keyFile;
       nginx = {
         domain = cfg.vhost;
       };
