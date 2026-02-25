@@ -74,6 +74,9 @@ in {
       keyFile = cfg.saml.keyFile;
       nginx = {
         domain = cfg.vhost;
+        virtualHosts = [
+          cfg.vhost
+        ];
       };
       scope = "openid";
     };
