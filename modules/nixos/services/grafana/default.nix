@@ -30,10 +30,10 @@ in {
         };
         "auth.proxy" = mkIf cfg.saml.enable {
           enabled = true;
-          header_name = "X-User";
+          header_name = "X-Email";
           header_property = "username";
           auto_sign_up = true;
-          headers = "Email:X-Email Groups:X-Groups";
+          headers = "Name:X-Email Email:X-Email Groups:X-Groups";
         };
       };
     };
