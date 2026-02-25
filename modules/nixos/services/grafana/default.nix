@@ -79,6 +79,7 @@ in {
           "cfg.vhost" = {};
         };
       };
+      provider = "oidc";
       scope = "openid";
     };
 
