@@ -75,7 +75,6 @@ in {
       nginx = {
         domain = cfg.vhost;
       };
-      provider = "entra-id";
       scope = "openid";
     };
 
