@@ -81,10 +81,11 @@ in {
       nginx = {
         domain = cfg.vhost;
         virtualHosts = {
-          "cfg.vhost" = {};
+          "${cfg.vhost}" = {};
         };
       };
       provider = "oidc";
+      reverseProxy = true;
       scope = "openid";
       extraConfig = {
         redis-connection-url = "redis://127.0.0.1";
