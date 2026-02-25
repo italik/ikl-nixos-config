@@ -86,6 +86,16 @@ in {
       };
       provider = "oidc";
       scope = "openid";
+      extraConfig = {
+        redis-connection-url = "redis://127.0.0.1";
+        session-store-type = "redis";
+      };
+    };
+
+    # Redis Configuration
+    services.redis.servers.oauth2-proxy = {
+      enable = true;
+      port = 6379;
     };
 
     # Impermanence config
