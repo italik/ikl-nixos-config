@@ -33,7 +33,7 @@ in {
           header_name = "X-User";
           header_property = "username";
           auto_sign_up = true;
-          headers = "Email:X-Email";
+          headers = "Email:X-Email Groups:X-Groups";
         };
       };
     };
@@ -66,6 +66,10 @@ in {
         locations."/" = {
           proxyPass = "http://unix:/run/grafana/grafana.sock";
           proxyWebsockets = true;
+          extraConfig = mkIf cfg.saml.enable ''
+            auth_request_set $groups $upstream_http_x_auth_request_groups;
+            proxy_set_header X-Groups $groups;
+          '';
         };
         extraConfig = mkIf cfg.saml.enable ''
           proxy_buffer_size   128k;
@@ -98,6 +102,7 @@ in {
       extraConfig = {
         redis-connection-url = "redis://127.0.0.1";
         session-store-type = "redis";
+        prefer-email-to-user = true;
       };
     };
 
