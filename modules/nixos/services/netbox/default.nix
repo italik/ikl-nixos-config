@@ -10,6 +10,7 @@ in {
     acme.enable = mkBoolOpt true "Whether or not to enable ACME.";
     sslCertificate = mkOpt str "" "Path to SSL certificate.";
     sslCertificateKey = mkOpt str "" "Path to SSL certificate key.";
+    apiTokenPeppersFile = mkOpt str "/data/secrets/netboxPepper" "Path to pepper file.";
   };
 
   config = mkIf cfg.enable {
@@ -27,6 +28,12 @@ in {
         ];
         CSRF_TRUSTED_ORIGINS = [ "https://${cfg.vhost}" ];
       };
+      extraConfig = ''
+        with open("${cfg.apiTokenPeppersFile}", "r") as pepper_file:
+            API_TOKEN_PEPPERS = {
+                1: pepper_file.readline(),
+            };
+      '';
     };
 
     services.nginx = {
