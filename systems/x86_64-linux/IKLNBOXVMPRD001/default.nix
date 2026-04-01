@@ -65,7 +65,7 @@ with lib.ikl; {
     services = {
       netbox = {
         enable = true;
-        package = pkgs.netbox_4_5;
+        package = pkgs.netbox;
         vhost = "netbox.italikintra.net";
         acme.enable = false;
         sslCertificate = "/data/secrets/certificate.pem";
