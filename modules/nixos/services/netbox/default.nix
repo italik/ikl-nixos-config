@@ -27,6 +27,8 @@ in {
           "${cfg.vhost}"
         ];
         CSRF_TRUSTED_ORIGINS = [ "https://${cfg.vhost}" ];
+        DISK_BASE_UNIT = 1024;
+        RAM_BASE_UNIT = 1024;
       };
       extraConfig = ''
         with open("${cfg.apiTokenPeppersFile}", "r") as pepper_file:
