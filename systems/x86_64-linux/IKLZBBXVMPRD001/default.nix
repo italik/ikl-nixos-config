@@ -52,6 +52,7 @@ with lib.ikl; {
   environment.systemPackages = with pkgs; [
     age
     vim
+    vulnix
     wget
     git
   ];
