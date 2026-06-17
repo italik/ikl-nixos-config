@@ -18,8 +18,8 @@ with lib.ikl; {
       interface = "enp1s0";
     };
     nameservers = [
-      "10.0.161.62"
-      "10.0.161.61"
+      "10.0.161.4"
+      "10.0.161.5"
     ];
     useDHCP = false;
   };
@@ -37,8 +37,8 @@ with lib.ikl; {
   time.timeZone = "Europe/London";
 
   services.timesyncd.servers = [
-    "10.0.161.62"
-    "10.0.161.61"
+    "10.0.161.4"
+    "10.0.161.5"
   ];
 
   fileSystems."/" = lib.mkForce {
