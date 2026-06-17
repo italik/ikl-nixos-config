@@ -8,7 +8,7 @@ with lib.ikl; {
 
   boot.loader.grub = {
     enable = true;
-    devices = lib.mkForce [ "/dev/sda" ];
+    devices = lib.mkForce [ "/dev/disk/by-path/acpi-VMBUS:01-vmbus-00000000000088990000000000000000-lun-0" ];
   };
 
   networking.hostName = "IKLZBBXVMPRD001";
