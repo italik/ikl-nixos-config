@@ -28,6 +28,7 @@ in {
           name = "grafana";
           host = "/run/postgresql";
         };
+        security.secret_key = "SW2YcwTIb9zpOOhoPsMm";
         "auth.proxy" = mkIf cfg.saml.enable {
           enabled = true;
           header_name = "X-Email";
