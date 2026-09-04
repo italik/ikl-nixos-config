@@ -53,6 +53,7 @@ in {
             "/data/netbox/media:/opt/netbox/netbox/media:rw"
             "/data/netbox/reports:/opt/netbox/netbox/reports:rw"
             "/data/netbox/scripts:/opt/netbox/netbox/scripts:rw"
+            "/data/tmp:/tmp:rw"
           ];
         };
         postgres = {
