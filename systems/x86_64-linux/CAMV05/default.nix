@@ -24,6 +24,10 @@ with lib.ikl; {
     useDHCP = false;
   };
 
+  services.timesyncd.servers = [
+    "10.2.2.1"
+  ];
+
   ### Change only options above here
 
   imports = [
